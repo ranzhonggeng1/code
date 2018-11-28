@@ -1,0 +1,21 @@
+2018-11-21 10:56:18 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\fileproduct\product.xml (系统找不到指定的路径。)
+2018-11-21 10:57:05 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\product.xml (系统找不到指定的路径。)
+2018-11-21 11:00:02 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\product.xml (系统找不到指定的路径。)
+2018-11-21 11:01:48 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\product.xml (系统找不到指定的路径。)
+2018-11-21 11:03:19 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\product.xml (系统找不到指定的路径。)
+2018-11-21 11:03:19 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-21 11:03:34 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\product.xml (系统找不到指定的路径。)
+2018-11-21 11:03:34 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-21 11:05:18 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1022\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-21 11:05:19 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1021\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-21 11:05:19 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1020\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-21 11:06:21 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-21 11:06:21 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\2\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-21 11:06:31 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-21 11:58:15 [com.wslint.wisdomreport.utils.XMLUtils:141] - 1 counts of IllegalAnnotationExceptions
+2018-11-21 11:58:16 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "null" ------------------
+2018-11-21 11:58:16 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "null" ------------------
+2018-11-21 11:59:51 [com.wslint.wisdomreport.utils.XMLUtils:141] - 1 counts of IllegalAnnotationExceptions
+2018-11-21 12:00:54 [com.wslint.wisdomreport.utils.XMLUtils:141] - 1 counts of IllegalAnnotationExceptions
+2018-11-21 12:14:37 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - JSON parse error: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 142] (through reference chain: com.wslint.wisdomreport.domain.vo.xml.SpaceVO["relations"]->java.util.ArrayList[0]) ------------------

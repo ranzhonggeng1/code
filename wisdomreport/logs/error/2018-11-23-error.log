@@ -1,0 +1,206 @@
+2018-11-23 10:21:15 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:174] - D:\server\file\product\1035\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 10:21:15 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.5335205242572261081.9000\work\Tomcat\localhost\ROOT\upload_81310506_41e5_465f_a5ab_e41ca3ed3f4a_00000003.tmp (系统找不到指定的文件。)
+2018-11-23 10:21:20 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 10:21:53 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1033\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 10:23:55 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 10:26:47 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 10:32:31 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 10:35:56 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 10:41:46 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\2\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 10:57:58 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 10:59:47 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 10:59:52 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1035\document\word\version\1\1035.docx not exist !
+2018-11-23 11:01:14 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:01:18 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1035\document\word\version\1\1035.docx not exist !
+2018-11-23 11:02:25 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1035\document\word\version\1\1035.docx not exist !
+2018-11-23 11:02:32 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1035\document\word\version\1\1035.docx not exist !
+2018-11-23 11:04:12 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1035\document\word\version\1\1035.docx not exist !
+2018-11-23 11:04:38 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1035\document\word\version\1\1035.docx not exist !
+2018-11-23 11:04:40 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1035\document\word\version\1\1035.docx not exist !
+2018-11-23 11:08:24 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:174] - D:\server\file\product\1036\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 11:08:24 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.5335205242572261081.9000\work\Tomcat\localhost\ROOT\upload_81310506_41e5_465f_a5ab_e41ca3ed3f4a_00000143.tmp (系统找不到指定的文件。)
+2018-11-23 11:08:30 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:08:36 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1036\document\word\version\1\1036.docx not exist !
+2018-11-23 11:11:12 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:174] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 11:11:12 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.5335205242572261081.9000\work\Tomcat\localhost\ROOT\upload_81310506_41e5_465f_a5ab_e41ca3ed3f4a_00000280.tmp (系统找不到指定的文件。)
+2018-11-23 11:11:59 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:174] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 11:11:59 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.5335205242572261081.9000\work\Tomcat\localhost\ROOT\upload_81310506_41e5_465f_a5ab_e41ca3ed3f4a_00000281.tmp (系统找不到指定的文件。)
+2018-11-23 11:18:36 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:174] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:23:35 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:175] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 11:23:36 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.4780126762105497788.9000\work\Tomcat\localhost\ROOT\upload_b4ce3b2b_38ee_4fe7_b1b0_75f965a857e6_00000000.tmp (系统找不到指定的文件。)
+2018-11-23 11:25:11 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:175] - D:\server\file\product\1040\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 11:25:11 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.4780126762105497788.9000\work\Tomcat\localhost\ROOT\upload_b4ce3b2b_38ee_4fe7_b1b0_75f965a857e6_00000004.tmp (系统找不到指定的文件。)
+2018-11-23 11:25:24 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:25:28 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1040\document\word\version\1\1040.docx not exist !
+2018-11-23 11:33:57 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:175] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 11:33:57 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.5840291475057812495.9000\work\Tomcat\localhost\ROOT\upload_93057137_af5b_47fb_bd1d_1b2ba1a9af22_00000001.tmp (系统找不到指定的文件。)
+2018-11-23 11:35:58 [org.apache.juli.logging.DirectJDKLog:182] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IllegalStateException: getOutputStream() has already been called for this response] with root cause
+java.lang.IllegalStateException: getOutputStream() has already been called for this response
+	at org.apache.catalina.connector.Response.getWriter(Response.java:624)
+	at org.apache.catalina.connector.ResponseFacade.getWriter(ResponseFacade.java:211)
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109)
+	at javax.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:109)
+	at org.thymeleaf.spring5.view.ThymeleafView.renderFragment(ThymeleafView.java:354)
+	at org.thymeleaf.spring5.view.ThymeleafView.render(ThymeleafView.java:187)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1325)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1069)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1008)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:974)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:866)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:635)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:851)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:60)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:383)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:96)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+2018-11-23 11:35:58 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - Could not find acceptable representation ------------------
+2018-11-23 11:38:45 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:176] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 11:38:45 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.5842605459314577780.9000\work\Tomcat\localhost\ROOT\upload_052fe625_21e5_4745_ac7e_e35d62e72940_00000000.tmp (系统找不到指定的文件。)
+2018-11-23 11:39:48 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:39:52 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1040\document\word\version\1\1040.docx not exist !
+2018-11-23 11:41:21 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:41:24 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:118] - file D:\server\file\product\1040\document\word\version\1\1040.docx not exist !
+2018-11-23 11:48:37 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:177] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:48:37 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.4576127418585518876.9000\work\Tomcat\localhost\ROOT\upload_21a783fe_a76a_4459_9e4a_99713af8b2f2_00000000.tmp (系统找不到指定的文件。)
+2018-11-23 11:56:50 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:177] - D:\server\file\product\1041\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 11:56:54 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 12:00:22 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:177] - D:\server\file\product\1042\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 12:00:29 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 12:02:38 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.4576127418585518876.9000\work\Tomcat\localhost\ROOT\upload_21a783fe_a76a_4459_9e4a_99713af8b2f2_00000012.tmp (系统找不到指定的文件。)
+2018-11-23 12:02:38 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:38 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:38 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:38 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:39 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:40 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:02:40 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:140] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.4576127418585518876.9000\work\Tomcat\localhost\ROOT\upload_21a783fe_a76a_4459_9e4a_99713af8b2f2_00000152.tmp (系统找不到指定的文件。)
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:24 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:25 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:25 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:25 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:25 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:04:25 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 12:07:25 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:194] - D:\server\file\product\1024\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 12:07:26 [com.wslint.wisdomreport.service.file.impl.FileServiceImpl:141] - java.io.FileNotFoundException: C:\Users\win 10\AppData\Local\Temp\tomcat.907014183936417923.9000\work\Tomcat\localhost\ROOT\upload_fc139ecd_a680_4f70_a972_0f6915ef3151_00000000.tmp (系统找不到指定的文件。)
+2018-11-23 12:08:13 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 12:19:47 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 12:21:13 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 12:32:23 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 12:32:49 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 12:32:51 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 12:33:11 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 13:44:32 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:195] - D:\server\file\product\1043\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 13:44:45 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 13:51:27 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:195] - D:\server\file\product\1044\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 14:08:32 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 14:14:58 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 14:15:04 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 14:15:24 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 14:15:29 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 14:16:11 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 14:24:36 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 14:30:02 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:195] - D:\server\file\product\1046\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 14:35:18 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - For input string: "" ------------------
+2018-11-23 14:35:18 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - For input string: "" ------------------
+2018-11-23 14:49:31 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 14:49:58 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 14:52:23 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 14:56:15 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 15:02:00 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 15:20:03 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 15:34:50 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 15:37:22 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 15:37:44 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 15:50:45 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 16:22:51 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 16:23:35 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 16:32:07 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 16:32:48 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 16:35:36 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 16:41:13 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - JSON parse error: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 42] (through reference chain: com.wslint.wisdomreport.domain.vo.xml.MethodAddVO["columnDTOList"]->java.util.ArrayList[0]->com.wslint.wisdomreport.domain.dto.xml.component.ColumnDTO["value"]) ------------------
+2018-11-23 16:44:58 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - JSON parse error: Unrecognized field "isRef" (class com.wslint.wisdomreport.domain.dto.xml.component.ColumnDTO), not marked as ignorable; nested exception is com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "isRef" (class com.wslint.wisdomreport.domain.dto.xml.component.ColumnDTO), not marked as ignorable (3 known properties: "value", "ref", "code"])
+ at [Source: (PushbackInputStream); line: 1, column: 67] (through reference chain: com.wslint.wisdomreport.domain.vo.xml.MethodAddVO["columnDTOList"]->java.util.ArrayList[0]->com.wslint.wisdomreport.domain.dto.xml.component.ColumnDTO["isRef"]) ------------------
+2018-11-23 17:06:26 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 17:06:31 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1045\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 17:13:10 [com.wslint.wisdomreport.service.config.document.impl.WordServiceImpl:195] - D:\server\file\product\1048\document\word\version.xml (系统找不到指定的文件。)
+2018-11-23 17:13:11 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - For input string: "" ------------------
+2018-11-23 17:13:11 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - For input string: "" ------------------
+2018-11-23 17:27:17 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 17:27:48 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 17:28:14 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\word\version.xml (系统找不到指定的路径。)
+2018-11-23 17:29:27 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - For input string: "" ------------------
+2018-11-23 17:29:27 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - For input string: "" ------------------
+2018-11-23 17:30:43 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 17:30:56 [com.wslint.wisdomreport.utils.XMLUtils:141] - null
+2018-11-23 17:30:56 [com.wslint.wisdomreport.config.WslGlobalExceptionHandler:26] - ------------------ 系统异常！ - null ------------------
+2018-11-23 17:36:07 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 17:45:08 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 17:45:36 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
+2018-11-23 17:56:59 [com.wslint.wisdomreport.utils.XMLUtils:134] - D:\server\file\product\1\document\xml\medicine.xml (系统找不到指定的路径。)
