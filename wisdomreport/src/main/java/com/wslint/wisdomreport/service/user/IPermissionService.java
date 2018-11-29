@@ -1,5 +1,6 @@
 package com.wslint.wisdomreport.service.user;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,4 +24,12 @@ public interface IPermissionService {
    * @return 查询信息
    */
   Map<String, Object> getUsersByPermissionCode(String permissionCode);
+
+  /**
+   * 根据权限码和待过滤用户获取用户列表
+   * @param permissionCode 权限码
+   * @param users 待过滤用户
+   * @return 查询信息
+   */
+  Map<String, Object> getFilterUsersByPermissionCode(String permissionCode, List<Long> users);
 }

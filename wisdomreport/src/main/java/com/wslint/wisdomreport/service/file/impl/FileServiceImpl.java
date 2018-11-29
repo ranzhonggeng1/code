@@ -1,6 +1,7 @@
 package com.wslint.wisdomreport.service.file.impl;
 
 import com.wslint.wisdomreport.adpter.IRCGServerAdpater;
+import com.wslint.wisdomreport.constant.Constant;
 import com.wslint.wisdomreport.constant.UrlConstant;
 import com.wslint.wisdomreport.dao.file.FileDao;
 import com.wslint.wisdomreport.domain.dto.file.CfgfileVersion;
@@ -10,6 +11,7 @@ import com.wslint.wisdomreport.utils.FileUtils;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -145,11 +147,12 @@ public class FileServiceImpl implements IFileService {
 
   /**
    * 文件批量上传
+   *
    * @param fileBatchList 上传文件对象
    */
   @Override
   public void uploadBatch(List<FileBatch> fileBatchList) {
-    for(FileBatch fileBatch : fileBatchList) {
+    for (FileBatch fileBatch : fileBatchList) {
       upload(fileBatch.getFilePath(), fileBatch.getFileName(), fileBatch.getUploadFile());
     }
   }
@@ -221,5 +224,83 @@ public class FileServiceImpl implements IFileService {
       fileNameList = Arrays.asList(fileNames);
     }
     return fileNameList;
+  }
+
+  /**
+   * 复制单个文件
+   *
+   * @param oldFilePath 原文件相对路径 如：product/test_html.html
+   * @param oldFilePath 复制后相对路径 如：product/html.html
+   */
+  @Override
+  public void copyFile(String oldFilePath, String newFilePath) {
+    try {
+      String oldPath = FileUtils.getFileRootPath() + oldFilePath;
+      String newPath = FileUtils.getFileRootPath() + newFilePath;
+      int bytesum = Constant.NUM_0;
+      int byteread = Constant.NUM_0;
+      File oldfile = new File(oldPath);
+      if (oldfile.exists()) { // 文件存在时
+        FileInputStream inStream = new FileInputStream(oldPath); // 读入原文件
+        FileOutputStream fs = new FileOutputStream(newPath);
+        byte[] buffer = new byte[1444];
+        int length;
+        while ((byteread = inStream.read(buffer)) != -1) {
+          bytesum += byteread; // 字节数 文件大小
+          System.out.println(bytesum);
+          fs.write(buffer, 0, byteread);
+        }
+        inStream.close();
+      }
+    } catch (Exception e) {
+      LOGGER.error("复制单个文件操作出错");
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * 复制整个文件夹内容
+   *
+   * @param oldFilePath 原文件相对路径 如：product/test_html
+   * @param newFilePath 复制后相对路径 如：product/html
+   */
+  @Override
+  public void copyFolder(String oldFilePath, String newFilePath) {
+
+    try {
+      String oldPath = FileUtils.getFileRootPath() + oldFilePath;
+      String newPath = FileUtils.getFileRootPath() + newFilePath;
+      (new File(newPath)).mkdirs(); // 如果文件夹不存在 则建立新文件夹
+      File a = new File(oldPath);
+      String[] file = a.list();
+      File temp = null;
+      for (int i = 0; i < file.length; i++) {
+        if (oldPath.endsWith(File.separator)) {
+          temp = new File(oldPath + file[i]);
+        } else {
+          temp = new File(oldPath + File.separator + file[i]);
+        }
+
+        if (temp.isFile()) {
+          FileInputStream input = new FileInputStream(temp);
+          FileOutputStream output =
+              new FileOutputStream(newPath + "/" + (temp.getName()).toString());
+          byte[] b = new byte[1024 * 5];
+          int len;
+          while ((len = input.read(b)) != -1) {
+            output.write(b, 0, len);
+          }
+          output.flush();
+          output.close();
+          input.close();
+        }
+        if (temp.isDirectory()) { // 如果是子文件夹
+          copyFolder(oldPath + "/" + file[i], newPath + "/" + file[i]);
+        }
+      }
+    } catch (Exception e) {
+      LOGGER.error("复制整个文件夹内容操作出错");
+      e.printStackTrace();
+    }
   }
 }

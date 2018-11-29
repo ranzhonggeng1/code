@@ -97,15 +97,13 @@ public class FileUtils {
         + File.separator;
   }
 
-  /**
-   * 获取小类word文件存储路径
-   */
+  /** 获取小类word文件存储路径 */
   public static String getSecondClassWordPath(Long medicineId, Long firstClassId) {
     return XMLConstant.PATH_PRODUCT
-            + medicineId
-            + XMLConstant.PATH_WORD
-            + firstClassId
-            + File.separator;
+        + medicineId
+        + XMLConstant.PATH_WORD
+        + firstClassId
+        + File.separator;
   }
 
   /**
@@ -182,27 +180,39 @@ public class FileUtils {
 
   /**
    * 获取药品word版本历史模板保存的相对位置
+   *
    * @param medicineId 药品ID
    * @return 版本路径
    */
   public static String getMedicineWordVersionPath(Long medicineId) {
     return XMLConstant.FILE_PRODUCT
-            + File.separator
-            + medicineId
-            + XMLConstant.PATH_WORD
-            + XMLConstant.PATH_MEDICINE_WORD_VERSION;
+        + File.separator
+        + medicineId
+        + XMLConstant.PATH_WORD
+        + XMLConstant.PATH_MEDICINE_WORD_VERSION;
   }
 
   /**
    * 获取药品word版本生效模板保存的相对位置
+   *
    * @param medicineId 药品ID
    * @return 返回生效区路径
    */
   public static String getMedicineWordOperationPath(Long medicineId) {
     return XMLConstant.FILE_PRODUCT
-            + File.separator
-            + medicineId
-            + XMLConstant.PATH_WORD
-            + XMLConstant.PATH_MEDICINE_WORD_OPERATION;
+        + File.separator
+        + medicineId
+        + XMLConstant.PATH_WORD
+        + XMLConstant.PATH_MEDICINE_WORD_OPERATION;
+  }
+
+  /**
+   * 获取药品header文件的存放路径
+   *
+   * @param medicineId
+   * @return header文件的存放路径
+   */
+  public static String getMedicineHeaderPath(Long medicineId) {
+    return XMLConstant.FILE_PRODUCT + File.separator + medicineId + XMLConstant.PATH_HTML;
   }
 }

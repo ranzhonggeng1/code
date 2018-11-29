@@ -30,6 +30,14 @@ public interface IDataReportService {
   Map<String, Object> save(List<DataReportDTO> dataReportDTOList) throws Exception;
 
   /**
+   * 保存报告备注
+   *
+   * @param dataReportDTOS 数据对象
+   * @return 处理结果
+   */
+  Map<String, Object> saveRemark(List<DataReportDTO> dataReportDTOS) throws Exception;
+
+  /**
    * 根据状态获取报告数据
    *
    * @param status 状态

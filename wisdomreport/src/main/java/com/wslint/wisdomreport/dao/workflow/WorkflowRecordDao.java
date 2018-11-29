@@ -23,9 +23,11 @@ public interface WorkflowRecordDao {
   @Insert(
       "<script>"
           + "insert into wf_record_current_task  "
-          + "(id, record_id, operation, operator, next_operator, reason, old_data, status, next_status, hold1, hold2, hold3, gmt_create, gmt_modified) values "
+          + "(id, record_id, operation, operator, next_operator, reason, old_data, old_remark, old_remark_time, old_remarker, "
+          + " status, next_status, hold1, hold2, hold3, gmt_create, gmt_modified) values "
           + "<foreach collection='list' item='item' index='index' separator=',' >"
-          + "(#{item.id}, #{item.recordId}, #{item.operation}, #{item.operator}, #{item.nextOperator}, #{item.reason}, #{item.oldData},"
+          + "(#{item.id}, #{item.recordId}, #{item.operation}, #{item.operator}, #{item.nextOperator}, #{item.reason}, "
+          + " #{item.oldData}, #{item.oldRemark}, #{item.oldRemarkTime}, #{item.oldRemarker}, "
           + " #{item.status}, #{item.nextStatus}, #{item.hold1}, #{item.hold2}, #{item.hold3}, #{item.gmtCreate}, #{item.gmtModified})"
           + "</foreach>"
           + "</script>")

@@ -13,6 +13,9 @@ public class DataRecordReturnVO {
 
   private Long orderId;
   private String data;
+  private String remark;
+  private Timestamp remarkTime;
+  private String remarkerName;
   private String imgUrl;
   private Integer status;
   private Timestamp gmtCreate;
@@ -42,6 +45,30 @@ public class DataRecordReturnVO {
 
   public void setData(String data) {
     this.data = data;
+  }
+
+  public String getRemark() {
+    return remark;
+  }
+
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+
+  public Timestamp getRemarkTime() {
+    return remarkTime;
+  }
+
+  public void setRemarkTime(Timestamp remarkTime) {
+    this.remarkTime = remarkTime;
+  }
+
+  public String getRemarkerName() {
+    return remarkerName;
+  }
+
+  public void setRemarkerName(String remarkerName) {
+    this.remarkerName = remarkerName;
   }
 
   public String getImgUrl() {
@@ -91,6 +118,4 @@ public class DataRecordReturnVO {
   public void setModifyUserName(String modifyUserName) {
     this.modifyUserName = modifyUserName;
   }
-
-
 }

@@ -67,7 +67,7 @@ public class WorkflowReportServiceImpl implements IWorkflowReportService {
         LOGGER.error("id = {} 的报告数据工作流权限校验失败!", workflowData.getReportId());
         throw new WorkflowException("工作流执行失败!");
       }
-      completeReportTask(workflowData, dataReportDTO.getData(), status, nextStatus);
+      completeReportTask(workflowData, dataReportDTO, status, nextStatus);
       completeReportData(dataReportDTO, workflowData, nextStatus);
       if (nextStatus == WorkflowConstant.STATUS_END) {
         backUpIds.add(workflowData.getReportId());
@@ -134,10 +134,14 @@ public class WorkflowReportServiceImpl implements IWorkflowReportService {
    * 封装报告工作流数据
    *
    * @param reportTaskDTO 工作流数据
+   * @param dataReportDTO 报告数据
    */
   private void completeReportTask(
-      WorkflowReportTaskDTO reportTaskDTO, String data, Integer status, Integer nextStatus) {
-    reportTaskDTO.setOldData(data);
+      WorkflowReportTaskDTO reportTaskDTO, DataReportDTO dataReportDTO, Integer status, Integer nextStatus) {
+    reportTaskDTO.setOldData(dataReportDTO.getData());
+    reportTaskDTO.setOldRemark(dataReportDTO.getRemark());
+    reportTaskDTO.setOldRemarker(dataReportDTO.getRemarker());
+    reportTaskDTO.setOldRemarkTime(dataReportDTO.getRemarkTime());
     WorkflowUtils.completeWorkflowTask(reportTaskDTO, status, nextStatus);
   }
 
@@ -154,6 +158,9 @@ public class WorkflowReportServiceImpl implements IWorkflowReportService {
     if (isEdit && newData != null && !newData.isEmpty()) {
       dataReportDTO.setData(newData);
     }
+    dataReportDTO.setRemark(null);
+    dataReportDTO.setRemarker(null);
+    dataReportDTO.setRemarkTime(null);
     dataReportDTO.setStatus(nextStatus);
     dataReportDTO.setNextOperator(reportTaskDTO.getNextOperator());
     dataReportDTO.setModifyUser(CommonUtils.getCurrentUserId());

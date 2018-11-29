@@ -51,6 +51,7 @@ public class DataRecordServiceImpl implements IDataRecordService {
    */
   @Override
   public Map<String, Object> save(List<DataRecordDTO> dataRecordDTOList) throws Exception {
+    LOGGER.info("记录数据保存 - {} 条！", dataRecordDTOList.size());
     List<WorkflowRecordTaskDTO> workflowRecordTaskDTOList = new ArrayList<>();
     // 查处所有类别id对应的数据，并处理出classId和batchId关联的map
     List<DataClassDTO> dataClassDTOList = dataClassDao.getClasssByClassIds(dataRecordDTOList);
@@ -83,6 +84,28 @@ public class DataRecordServiceImpl implements IDataRecordService {
     }
     LOGGER.error("记录数据新增失败！");
     throw new DataException("数据保存失败!");
+  }
+
+  /**
+   * 保存记录备注
+   *
+   * @param dataRecordDTOList 记录对象
+   * @return 处理结果
+   */
+  @Override
+  public Map<String, Object> saveRemark(List<DataRecordDTO> dataRecordDTOList)
+      throws Exception {
+    dataRecordDTOList.forEach(
+        data -> {
+          data.setRemarker(CommonUtils.getCurrentUserId());
+          data.setRemarkTime(CommonUtils.getNowTime());
+        });
+    if (!dataRecordDao.updateRemarksByClassOrderIds(dataRecordDTOList)) {
+      LOGGER.error("更新备注失败！");
+      throw new DataException("保存备注失败！");
+    }
+    LOGGER.info("更新备注成功！");
+    return ReturnUtils.successMap("更新备注成功！");
   }
 
   /**

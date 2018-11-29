@@ -10,8 +10,6 @@ import com.wslint.wisdomreport.service.file.IFileService;
 import com.wslint.wisdomreport.utils.FileUtils;
 import com.wslint.wisdomreport.utils.ReturnUtils;
 import com.wslint.wisdomreport.xmldao.IWordDao;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,10 +41,9 @@ public class WordServiceImpl implements IWordService {
       Long idMax, String description, Long medicineId, MultipartFile uploadFile) {
     String medicineWordVersionPath = FileUtils.getMedicineWordVersionXmlPath(medicineId);
     logger.info("药品word版本管理文件存储位置：------" + medicineWordVersionPath);
-    String versionFileName = Constant.STR_VERSION;
-    // 先生成版本管理文件，在上传文件
+    // 先生成版本管理文件，再上传文件
     // 检查药品word的version.xml是否存在
-    if (!wordVersionExit(medicineWordVersionPath, versionFileName)) {
+    if (!FileUtils.createPath(medicineWordVersionPath)) {
       // 不存在，首次创建
       if (!addMedicineWordVersionXml(idMax, medicineId, description)) {
         return ReturnUtils.failureMap("药品模板管理文件创建失败！");
@@ -86,17 +83,16 @@ public class WordServiceImpl implements IWordService {
   public Map<String, Object> setMedicineWordToOperation(
       Long idMax, String description, Long medicineId, MultipartFile uploadFile) {
     // 先保存历史版本
-    //        setMedicineWordVersion(idMax, description, medicineId, uploadFile);
+    setMedicineWordVersion(idMax, description, medicineId, uploadFile);
     String medicineWordOperationPath = FileUtils.getMedicineWordOperationPath(medicineId);
-    logger.info("药品word生效区存储位置：------" + medicineWordOperationPath);
-    String fileName = medicineId + XMLConstant.WORD_SUFFIX;
 
-    String path = iFileService.upload(medicineWordOperationPath, fileName, uploadFile);
-    logger.info("生效区path---------" + path);
-    if (!path.isEmpty()) {
-      return ReturnUtils.successMap("药品word上传生效区成功");
-    }
-    return ReturnUtils.failureMap("药品word上传生效区失败！");
+    // 获取药品历史版本存储位置
+    VersionDTO versionDTO = iWordDao.getWordVersionInfoById(medicineId);
+    ConfigDTO configDTO = versionDTO.getConfig();
+    String medicineVersionPath =
+        FileUtils.getMedicineWordVersionPath(medicineId) + configDTO.getVersionMax();
+    iFileService.copyFolder(medicineVersionPath, medicineWordOperationPath);
+    return ReturnUtils.successMap("药品word上传生效区成功！");
   }
 
   /**
@@ -115,9 +111,8 @@ public class WordServiceImpl implements IWordService {
     configDTO.setOperation(Constant.FILE_WORD_VERSION_FIRST_ID);
     configDTO.setVersionMax(Constant.FILE_WORD_VERSION_FIRST_ID);
     configDTO.setIdMax(idMax);
-
+    // 必须输入修改原因
     idDescriptionDTO.setId(Constant.FILE_WORD_VERSION_FIRST_ID);
-    // 描述必须通过接口
     idDescriptionDTO.setDescription(description);
 
     List<IdDescriptionDTO> idDescriptionDTOArrayList = new ArrayList<>();
@@ -137,10 +132,8 @@ public class WordServiceImpl implements IWordService {
 
     // 设置版本号，叠加
     String maxVersion = configDTO.getVersionMax();
-    logger.info("版本号---- " + maxVersion);
     int versionId = Integer.parseInt(maxVersion);
     String currentVersion = String.valueOf(++versionId);
-    logger.info("版本号叠加---- " + currentVersion);
 
     // 保存原来的id list，并且新加一条数据
     List<IdDescriptionDTO> idDescriptionDTOList = versionDTO.getIdDescriptionDTOS();
@@ -159,26 +152,5 @@ public class WordServiceImpl implements IWordService {
     versionDTO.setIdDescriptionDTOS(idDescriptionDTOList);
 
     return iWordDao.setWordVersionInfoById(medicineId, versionDTO);
-  }
-
-  /**
-   * 检查药品word的version文件是否存在
-   *
-   * @param path 药品相对位置
-   * @param name 文件名称
-   * @return boolean 文件是否存在
-   */
-  private boolean wordVersionExit(String path, String name) {
-    String xmlPath = path + name + XMLConstant.XML_SUFFIX;
-    FileReader fr = null;
-    try {
-      fr = new FileReader(xmlPath);
-      return true;
-    } catch (FileNotFoundException e) {
-      logger.info("{} 文件不存在！", xmlPath);
-      logger.error(e.getMessage());
-      e.printStackTrace();
-      return false;
-    }
   }
 }

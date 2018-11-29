@@ -1,6 +1,6 @@
 package com.wslint.wisdomreport.domain.vo.data.report;
 
-import com.wslint.wisdomreport.domain.vo.data.batch.DataBatchIdVO;
+import com.wslint.wisdomreport.domain.vo.data.batch.DataBatchVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 2018/11/16 10:57
  */
 @ApiModel(value = "保存报告数据对象")
-public class DataReportSaveVO extends DataBatchIdVO {
+public class DataReportSaveVO extends DataBatchVO {
 
   @ApiModelProperty(value = "空格id", required = true, example = "233")
   private Long orderId;

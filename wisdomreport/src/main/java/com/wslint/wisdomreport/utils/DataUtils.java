@@ -29,12 +29,17 @@ public class DataUtils {
   public static boolean checkWorkflowRight(DataWorkflowDTO dataWorkflowDTO) {
     if (dataWorkflowDTO.getNextOperator() != null
         && !dataWorkflowDTO.getNextOperator().equals(CommonUtils.getCurrentUserId())) {
-      User dataUser = iUserService.getUserById(dataWorkflowDTO.getNextOperator());
+      ///      User dataUser = iUserService.getUserById(dataWorkflowDTO.getNextOperator());
       User currentUser = CommonUtils.getCurrentUser();
+      ///      LOGGER.error(
+      ///          "工作流权限校验失败!当前数据待审核人为:{}-{}, 当前用户为:{}-{}",
+      ///          dataUser.getUserCode(),
+      ///          dataUser.getUserName(),
+      ///          currentUser.getUserCode(),
+      ///          currentUser.getUserName());
       LOGGER.error(
-          "工作流权限校验失败!当前数据待审核人为:{}-{}, 当前用户为:{}-{}",
-          dataUser.getUserCode(),
-          dataUser.getUserName(),
+          "工作流权限校验失败!当前数据待审核人为:{}, 当前用户为:{}-{}",
+          dataWorkflowDTO.getNextOperator(),
           currentUser.getUserCode(),
           currentUser.getUserName());
       return false;

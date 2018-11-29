@@ -138,13 +138,13 @@ public class WorkflowReportServiceImplTest {
     tasks.add(setUpTask(207000002L, REPORT_OPERATION_EDIT_DRAFT, null, "new_data"));
     tasks.add(setUpTask(208000001L, REPORT_OPERATION_EDIT_EFFECTIVE, null, "new_data"));
     tasks.add(setUpTask(208000002L, REPORT_OPERATION_EDIT_EFFECTIVE, null, "new_data"));
-    tasks.add(setUpTask(209000001L, OPERATION_COMPLETE, null, null));
-    tasks.add(setUpTask(209000002L, OPERATION_COMPLETE, null, null));
 
     tasks.add(setUpTask(5000001L, BATCH_OPERATION_COMMIT, Constant.ADMIN_ID, null));
     tasks.add(setUpTask(5000002L, BATCH_OPERATION_COMMIT, Constant.ADMIN_ID, null));
     tasks.add(setUpTask(9000001L, BATCH_OPERATION_REJECT, null, null));
     tasks.add(setUpTask(9000002L, BATCH_OPERATION_REJECT, null, null));
+    tasks.add(setUpTask(0000001L, OPERATION_COMPLETE, null, null));
+    tasks.add(setUpTask(0000002L, OPERATION_COMPLETE, null, null));
     return tasks;
   }
 
@@ -173,13 +173,13 @@ public class WorkflowReportServiceImplTest {
     datas.add(getData(207000002L, "20702_old_data", REPORT_STATUS_DRAFT, null));
     datas.add(getData(208000001L, "20801_old_data", REPORT_STATUS_EFFECTIVE, null));
     datas.add(getData(208000002L, "20802_old_data", REPORT_STATUS_EFFECTIVE, null));
-    datas.add(getData(209000001L, "20901_old_data", REPORT_STATUS_APPROVE, Constant.ADMIN_ID));
-    datas.add(getData(209000002L, "20902_old_data", REPORT_STATUS_APPROVE, Constant.ADMIN_ID));
 
     datas.add(getData(5000001L, "501_old_data", REPORT_STATUS_EFFECTIVE, null));
     datas.add(getData(5000002L, "502_old_data", REPORT_STATUS_EFFECTIVE, null));
     datas.add(getData(9000001L, "901_old_data", REPORT_STATUS_APPROVE, Constant.ADMIN_ID));
     datas.add(getData(9000002L, "902_old_data", REPORT_STATUS_APPROVE, Constant.ADMIN_ID));
+    datas.add(getData(0000001L, "20901_old_data", REPORT_STATUS_APPROVE, Constant.ADMIN_ID));
+    datas.add(getData(0000002L, "20902_old_data", REPORT_STATUS_APPROVE, Constant.ADMIN_ID));
     dataReportDao.insertDataReports(datas);
   }
 

@@ -1,5 +1,7 @@
 package com.wslint.wisdomreport.domain.dto.workflow;
 
+import java.sql.Timestamp;
+
 /**
  * 记录工作流对象
  *
@@ -10,6 +12,10 @@ public class WorkflowReportTaskDTO extends WorkflowTaskDTO {
 
   private Long reportId;
   private String oldData;
+  private String oldRemark;
+  private Timestamp oldRemarkTime;
+  private Long oldRemarker;
+  private String oldRemarkerName;
   private String newData;
   private String imgUrl;
 
@@ -27,6 +33,38 @@ public class WorkflowReportTaskDTO extends WorkflowTaskDTO {
 
   public void setOldData(String oldData) {
     this.oldData = oldData;
+  }
+
+  public String getOldRemark() {
+    return oldRemark;
+  }
+
+  public void setOldRemark(String oldRemark) {
+    this.oldRemark = oldRemark;
+  }
+
+  public Timestamp getOldRemarkTime() {
+    return oldRemarkTime;
+  }
+
+  public void setOldRemarkTime(Timestamp oldRemarkTime) {
+    this.oldRemarkTime = oldRemarkTime;
+  }
+
+  public Long getOldRemarker() {
+    return oldRemarker;
+  }
+
+  public void setOldRemarker(Long oldRemarker) {
+    this.oldRemarker = oldRemarker;
+  }
+
+  public String getOldRemarkerName() {
+    return oldRemarkerName;
+  }
+
+  public void setOldRemarkerName(String oldRemarkerName) {
+    this.oldRemarkerName = oldRemarkerName;
   }
 
   public String getNewData() {

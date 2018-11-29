@@ -38,7 +38,7 @@ public interface DataBatchDao {
    */
   @Update(
       "update data_batch set status = #{status}, gmt_modified = #{gmtModified}, modify_user = #{modifyUser}, next_operator = #{nextOperator} "
-          + " where id = #{id}")
+          + " where id = #{id} and valid = 1")
   boolean updateBatchDataStatus(DataBatchDTO dataBatchDTO);
 
   /**
@@ -49,7 +49,7 @@ public interface DataBatchDao {
    * @return 是否存在
    */
   @Select(
-      "select if(count(1) = 0 ,0, 1) from data_batch where medicine_id = #{medicineId} and batch_no = #{batchNo}")
+      "select if(count(1) = 0 ,0, 1) from data_batch where medicine_id = #{medicineId} and batch_no = #{batchNo} and valid = 1")
   boolean isBatchDataExist(@Param("medicineId") Long medicineId, @Param("batchNo") String batchNo);
 
   /**
@@ -61,7 +61,8 @@ public interface DataBatchDao {
    * @return 是否满足条件
    */
   @Select(
-      "select if(count(1) = 0 ,0, 1) from data_batch where id = #{batchId} and status = #{status} and (next_operator is null || next_operator = #{currentUserId})")
+      "select if(count(1) = 0 ,0, 1) from data_batch where id = #{batchId} and status = #{status} and valid = 1"
+          + " and (next_operator is null || next_operator = #{currentUserId})")
   boolean checkWorkflowRight(
       @Param("batchId") Long batchId,
       @Param("status") int status,
@@ -78,7 +79,7 @@ public interface DataBatchDao {
    */
   @Select(
       "<script>"
-          + "select * from data_batch where medicine_id = #{medicineId}"
+          + "select * from data_batch where medicine_id = #{medicineId} and valid = 1 "
           + "<when test='status != -1'> and status = #{status} </when>"
           + " order by gmt_modified desc "
           + " limit #{offset},#{limit} "
@@ -96,7 +97,7 @@ public interface DataBatchDao {
    * @return 批次数据
    */
   @Select(
-      "select * from data_batch where next_operator = #{nextOperator} order by gmt_modified desc")
+      "select * from data_batch where next_operator = #{nextOperator} and valid = 1 order by gmt_modified desc")
   List<DataBatchDTO> getDataBatchByNextOperator(Long nextOperator);
 
   /**
@@ -189,4 +190,25 @@ public interface DataBatchDao {
    */
   @SelectProvider(type = DataSqlProvider.class, method = "getHaveDataByMedicineIdBatchNosMapSql")
   boolean haveDataByMedicineIdBatchNosMap(Map<Long, List<String>> medicineIdBatchNosMap);
+
+  @Select(
+      "select dc.id from data_batch db, data_class dc where db.id = dc.batch_id and db.medicine_id = #{medicineId} and db.batch_no = #{batchNo} "
+          + " and dc.first_class_id = #{firstClassId} and dc.second_class_id = #{secondClassId} and db.valid = 1")
+  Long fkGetClassIdByRubbish4(
+      @Param("medicineId") Long medicineId,
+      @Param("batchNo") String batchNo,
+      @Param("firstClassId") Long firstClassId,
+      @Param("secondClassId") Long secondClassId);
+
+  @Select(
+      "select id from data_batch where medicine_id = #{medicineId} and batch_no = #{batchNo} and valid = 1")
+  Long fkGetBatchIdByRubbish2(
+      @Param("medicineId") Long medicineId, @Param("batchNo") String batchNo);
+
+  @Select(
+      "select id from data_class where batch_id = #{batchId} and first_class_id = #{firstClassId} and second_class_id = #{secondClassId}")
+  Long fkGetClassIdByRubbish3(
+      @Param("batchId") Long batchId,
+      @Param("firstClassId") Long firstClassId,
+      @Param("secondClassId") Long secondClassId);
 }

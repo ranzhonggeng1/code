@@ -44,7 +44,8 @@ public interface DataReportDao {
     "<script>"
         + "<foreach collection='list' item='item' index='index' open='' close='' separator=';'>"
         + " update data_report set "
-        + " data = #{item.data}, status = #{item.status}, next_operator = #{item.nextOperator}, "
+        + " data = #{item.data}, remark = #{item.remark}, remark_time = #{item.remarkTime}, remarker = #{item.remarker}, "
+        + " status = #{item.status}, next_operator = #{item.nextOperator}, "
         + " modify_user = #{item.modifyUser}, gmt_modified = #{item.gmtModified} "
         + " where id = #{item.id} "
         + "</foreach>"
@@ -154,4 +155,19 @@ public interface DataReportDao {
           + "</foreach>"
           + "</script>")
   List<WorkflowReportTaskDTO> getReportTasksByBatchTasks(List<WorkflowBatchTaskDTO> batchTaskDTOS);
+
+  /**
+   * 保存备注信息
+   *
+   * @param dataReportDTOList 保存备注信息
+   * @return 是否保存成功
+   */
+  @Update(
+      "<script>"
+          + "<foreach collection='list' item='item' index='index' open='' separator=';' close='' >"
+          + "update data_report set remark = #{item.remark}, remark_time = #{item.remarkTime}, remarker = #{item.remarker} "
+          + " where batch_id = #{item.batchId} and order_id = #{item.orderId}"
+          + "</foreach>"
+          + "</script>")
+  boolean updateRemarksByClassOrderIds(List<DataReportDTO> dataReportDTOList);
 }

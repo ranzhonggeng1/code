@@ -1,6 +1,7 @@
 package com.wslint.wisdomreport.controller.user;
 
 import com.wslint.wisdomreport.domain.dto.permission.Permission;
+import com.wslint.wisdomreport.domain.vo.user.GetRightUserVO;
 import com.wslint.wisdomreport.service.user.IPermissionService;
 import com.wslint.wisdomreport.utils.ReturnUtils;
 import io.swagger.annotations.Api;
@@ -58,5 +59,16 @@ public class PermissionContreller {
     return iPermissionService.getUsersByPermissionCode(permission.getPermissionCode());
   }
 
-  /** todo yangmingdong 负责完成 */
+  /**
+   * 根据权限码查看用户
+   *
+   * @return 处理结果
+   */
+  @ApiOperation(value = "根据权限码查看用户接口", notes = "根据权限码查看用户")
+  @RequestMapping(value = "/getFilterUsersByPermissionCode", method = RequestMethod.POST)
+  public Map<String, Object> getFilterUsersByPermissionCode(
+      @RequestBody GetRightUserVO getRightUserVO) {
+    return iPermissionService.getFilterUsersByPermissionCode(
+        getRightUserVO.getPermissionCode(), getRightUserVO.getUsers());
+  }
 }

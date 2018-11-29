@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author yuxr
  * @since 2018/11/13 14:22
  */
-@Api(tags = "记录工作流接口", description = "提供记录工作流接口")
+@Api(tags = "3 工作流接口", description = "提供工作流流转接口")
 @RestController
 @RequestMapping(value = "/workflow/record")
 public class WorkflowRecordController {
@@ -70,4 +70,6 @@ public class WorkflowRecordController {
         BeanCopyUtil.copyList(workflowRecordTaskDTOList, WorkflowRecordTraceReturnVO.class);
     return ReturnUtils.successMap(workflowRecordTraceReturnVOList, "记录追溯数据查询成功！");
   }
+
+
 }

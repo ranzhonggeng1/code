@@ -141,6 +141,7 @@ public class WorkflowBatchServiceImpl implements IWorkflowBatchService {
   public int redo(List<WorkflowBatchRedoDTO> workflowRedoDTOS) throws Exception {
     List<WorkflowBatchTaskDTO> workflowBatchTaskDTOS = new ArrayList<>();
     for (WorkflowBatchRedoDTO workflowRedoDTO : workflowRedoDTOS) {
+      workflowBatchTaskDTOS.add(newRedoBatchTaskDTO(workflowRedoDTO));
       List<DataClassDTO> dataClassDTOS =
           dataClassDao.getClasssByBatchId(workflowRedoDTO.getBatchId());
       // 创建新的批次，之前的批次置为无效状态
@@ -150,61 +151,60 @@ public class WorkflowBatchServiceImpl implements IWorkflowBatchService {
       }
       iDataBatchService.save(dataClassDTOS);
       // 整理出不需要复测的检查项
+      Map<Long, Long> oldNewClassIdMap = new HashMap<>();
+      Map<Long, Long> oldNewBatchIdMap = new HashMap<>();
+      List<Long> copyClassIds = new ArrayList<>();
       List<DataClassDTO> redoDTOS = workflowRedoDTO.getDataClassDTOS();
       dataClassDTOS.forEach(
           classDTO ->
               redoDTOS.forEach(
                   redoDTO -> {
-                    if (redoDTO.getFirstClassId().equals(classDTO.getFirstClassId())
-                        && redoDTO.getSecondClassId().equals(classDTO.getSecondClassId())) {
-                      dataClassDTOS.remove(classDTO);
-                      redoDTOS.remove(redoDTO);
+                    if (!redoDTO.getFirstClassId().equals(classDTO.getFirstClassId())
+                        || !redoDTO.getSecondClassId().equals(classDTO.getSecondClassId())) {
+                      copyClassIds.add(classDTO.getOldClassId());
+                      oldNewClassIdMap.put(classDTO.getOldClassId(), classDTO.getId());
+                      oldNewBatchIdMap.put(classDTO.getOldBatchId(), classDTO.getBatchId());
                     }
                   }));
-      if (redoDTOS.size() > 0) {
-        LOGGER.error("复测检查项与已有检查项不匹配!");
-        throw new WorkflowException("复测流程流转失败！");
-      }
+      ///      if (redoDTOS.size() > 0) {
+      ///        LOGGER.error("复测检查项与已有检查项不匹配!");
+      ///        throw new WorkflowException("复测流程流转失败！");
+      ///      }
+
       // 复制不需要复测的检查项的原始记录 复制 并 处理
-      Map<Long, Long> oldNewClassIdMap = new HashMap<>();
-      Map<Long, Long> oldNewBatchIdMap = new HashMap<>();
-      List<Long> copyClassIds = new ArrayList<>();
-      dataClassDTOS.forEach(
-          dataClass -> {
-            copyClassIds.add(dataClass.getOldClassId());
-            oldNewClassIdMap.put(dataClass.getOldClassId(), dataClass.getId());
-            oldNewBatchIdMap.put(dataClass.getOldBatchId(), dataClass.getBatchId());
-          });
-      List<DataRecordDTO> datas = dataRecordDao.getCopyRecordDatasByClassIds(copyClassIds);
-      List<Long> copyRecordIds = new ArrayList<>();
-      Map<Long, Long> oldNewRecordIdMap = new HashMap<>();
-      datas.forEach(
-          data -> {
-            data.setOldId(data.getId());
-            data.setId(CommonUtils.getNextId());
-            data.setStatus(WorkflowConstant.RECORD_STATUS_EFFECTIVE);
-            data.setBatchId(oldNewBatchIdMap.get(data.getBatchId()));
-            data.setClassId(oldNewClassIdMap.get(data.getClassId()));
-            copyRecordIds.add(data.getOldId());
-            oldNewRecordIdMap.put(data.getOldId(), data.getId());
-          });
-      if (!dataRecordDao.insertDataRecords(datas)) {
-        LOGGER.error("复制原始记录数据失败!");
-        throw new WorkflowException("复测流程流转失败！");
+      if (!copyClassIds.isEmpty()) {
+        List<DataRecordDTO> datas = dataRecordDao.getCopyRecordDatasByClassIds(copyClassIds);
+        List<Long> copyRecordIds = new ArrayList<>();
+        Map<Long, Long> oldNewRecordIdMap = new HashMap<>();
+        datas.forEach(
+            data -> {
+              data.setOldId(data.getId());
+              data.setId(CommonUtils.getNextId());
+              data.setStatus(WorkflowConstant.RECORD_STATUS_EFFECTIVE);
+              data.setBatchId(oldNewBatchIdMap.get(data.getBatchId()));
+              data.setClassId(oldNewClassIdMap.get(data.getClassId()));
+              copyRecordIds.add(data.getOldId());
+              oldNewRecordIdMap.put(data.getOldId(), data.getId());
+            });
+        if (!datas.isEmpty() && !dataRecordDao.insertDataRecords(datas)) {
+          LOGGER.error("复制原始记录数据失败!");
+          throw new WorkflowException("复测流程流转失败！");
+        }
+        // 复制不需要复测的检查项的原始记录的流程记录 复制 并 处理
+        if (!copyRecordIds.isEmpty()) {
+          List<WorkflowRecordTaskDTO> tasks =
+              workflowRecordDao.getCopyRecordTasksByRecordIds(copyRecordIds);
+          tasks.forEach(
+              task -> {
+                task.setId(CommonUtils.getNextId());
+                task.setRecordId(oldNewRecordIdMap.get(task.getRecordId()));
+              });
+          if (!tasks.isEmpty() && !workflowRecordDao.batchInsertWorkflowTask(tasks)) {
+            LOGGER.error("复制原始记录工作流失败!");
+            throw new WorkflowException("复测流程流转失败！");
+          }
+        }
       }
-      // 复制不需要复测的检查项的原始记录的流程记录 复制 并 处理
-      List<WorkflowRecordTaskDTO> tasks =
-          workflowRecordDao.getCopyRecordTasksByRecordIds(copyRecordIds);
-      tasks.forEach(
-          task -> {
-            task.setId(CommonUtils.getNextId());
-            task.setRecordId(oldNewRecordIdMap.get(task.getRecordId()));
-          });
-      if (!workflowRecordDao.batchInsertWorkflowTask(tasks)) {
-        LOGGER.error("复制原始记录工作流失败!");
-        throw new WorkflowException("复测流程流转失败！");
-      }
-      workflowBatchTaskDTOS.add(newRedoBatchTaskDTO(workflowRedoDTO));
     }
     // 当前批次数据走工作流-复测 将所有原数据结束
     return doWorkflow(workflowBatchTaskDTOS);

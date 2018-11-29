@@ -44,7 +44,8 @@ public interface DataRecordDao {
     "<script>"
         + "<foreach collection='list' item='item' index='index' open='' close='' separator=';'>"
         + " update data_record set "
-        + " data = #{item.data}, status = #{item.status}, next_operator = #{item.nextOperator}, "
+        + " data = #{item.data}, remark = #{item.remark}, remark_time = #{item.remarkTime}, remarker = #{item.remarker}, "
+        + " status = #{item.status}, next_operator = #{item.nextOperator}, "
         + " modify_user = #{item.modifyUser}, gmt_modified = #{item.gmtModified} "
         + " where id = #{item.id} "
         + "</foreach>"
@@ -197,4 +198,19 @@ public interface DataRecordDao {
           + "</foreach>"
           + "</script>")
   List<DataRecordDTO> getCopyRecordDatasByClassIds(List<Long> copyClassIds);
+
+  /**
+   * 根据类型和空格id更新备注
+   *
+   * @param dataRecordDTOList 数据对象
+   * @return 是否更新成功
+   */
+  @Update(
+      "<script>"
+          + "<foreach collection='list' item='item' index='index' open='' separator=';' close=''>"
+          + "update data_record set remark = #{item.remark}, remark_time = #{item.remarkTime}, remarker = #{item.remarker} "
+          + " where class_id = #{item.classId} and order_id = #{item.orderId} "
+          + "</foreach>"
+          + "</script>")
+  boolean updateRemarksByClassOrderIds(List<DataRecordDTO> dataRecordDTOList);
 }

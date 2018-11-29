@@ -1,10 +1,9 @@
 package com.wslint.wisdomreport.service.file;
 
 import com.wslint.wisdomreport.domain.dto.file.CfgfileVersion;
+import com.wslint.wisdomreport.domain.dto.file.FileBatch;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
-import com.wslint.wisdomreport.domain.dto.file.FileBatch;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -52,9 +51,10 @@ public interface IFileService {
 
   /**
    * 文件批量上传
+   *
    * @param fileBatchList 上传文件对象
    */
-  void  uploadBatch(List<FileBatch> fileBatchList);
+  void uploadBatch(List<FileBatch> fileBatchList);
 
   /**
    * 根据路径获取所有图片的url
@@ -77,4 +77,20 @@ public interface IFileService {
    * @return url集合
    */
   List<String> getProofUrls(Long medicineId, Long batchNo, Long firstClassId, Long secondClassId);
+
+  /**
+   * 复制单个文件
+   *
+   * @param oldFilePath String 原文件相对路径 如：product/test_html.html
+   * @param newFilePath String 复制后相对路径 如：product/html.html
+   */
+  void copyFile(String oldFilePath, String newFilePath);
+
+  /**
+   * 复制整个文件夹内容
+   *
+   * @param oldFilePath String 原文件相对路径 如：product/test_html
+   * @param newFilePath String 复制后相对路径 如：product/html
+   */
+  void copyFolder(String oldFilePath, String newFilePath);
 }

@@ -363,7 +363,7 @@ create table data_batch
   medicine_id   bigint(64)  not null,
   status        int         not null,
   next_operator bigint(64)  null,
-  valid         tinyint(1)  not null,
+  valid         tinyint(1) default 1,
   hold1         varchar(64) null,
   hold2         varchar(64) null,
   hold3         varchar(64) null,
@@ -401,8 +401,10 @@ CREATE OR REPLACE VIEW vw_data_batch_detail AS
   from data_batch d;
 CREATE OR REPLACE VIEW vw_data_class_detail AS
   select d.*,
-         (select user_name from user where id = d.create_user) as create_user_name,
-         (select user_name from user where id = d.modify_user) as modify_user_name
+         (select medicine_id from data_batch where id = d.batch_id) as medicine_id,
+         (select batch_no from data_batch where id = d.batch_id)    as batch_no,
+         (select user_name from user where id = d.create_user)      as create_user_name,
+         (select user_name from user where id = d.modify_user)      as modify_user_name
   from data_class d;
 
 -- auto-generated definition
@@ -501,6 +503,9 @@ create table data_record
   class_id      bigint(64)    not null,
   batch_id      bigint(64)    not null,
   data          varchar(1000) null,
+  remark        varchar(1000) null,
+  remark_time   timestamp     null,
+  remarker      bigint(64)    null,
   img_url       varchar(1000) null,
   status        int           not null,
   next_operator bigint(64)    null,
@@ -523,7 +528,8 @@ create or replace view vw_data_record_detail as
          cl.second_class_id,
          (select user_name from user where id = re.next_operator) as next_operator_name,
          (select user_name from user where id = re.create_user)   as create_user_name,
-         (select user_name from user where id = re.modify_user)   as modify_user_name
+         (select user_name from user where id = re.modify_user)   as modify_user_name,
+         (select user_name from user where id = re.remarker)      as remarker_name
   from data_record re,
        data_batch ba,
        data_class cl
@@ -533,55 +539,63 @@ create or replace view vw_data_record_detail as
 -- auto-generated definition
 create table wf_record_current_task
 (
-  id            bigint(64)    not null
+  id              bigint(64)    not null
     primary key,
-  record_id     bigint(64)    not null,
-  operation     int           not null,
-  operator      bigint(64)    not null,
-  next_operator bigint(64)    null,
-  reason        varchar(1000) null,
-  old_data      varchar(1000) null,
-  status        int           null,
-  next_status   int           null,
-  hold1         varchar(64)   null,
-  hold2         varchar(64)   null,
-  hold3         varchar(64)   null,
-  gmt_create    timestamp     null,
-  gmt_modified  timestamp     null
+  record_id       bigint(64)    not null,
+  operation       int           not null,
+  operator        bigint(64)    not null,
+  next_operator   bigint(64)    null,
+  reason          varchar(1000) null,
+  old_data        varchar(1000) null,
+  old_remark      varchar(1000) null,
+  old_remark_time timestamp     null,
+  old_remarker    bigint(64)    null,
+  status          int           null,
+  next_status     int           null,
+  hold1           varchar(64)   null,
+  hold2           varchar(64)   null,
+  hold3           varchar(64)   null,
+  gmt_create      timestamp     null,
+  gmt_modified    timestamp     null
 )
   comment '数据工作流表';
 
 create view vw_wf_record_current_task as
   select wf.*,
          (select user_name from user where id = wf.operator)      as operator_name,
-         (select user_name from user where id = wf.next_operator) as next_operator_name
+         (select user_name from user where id = wf.next_operator) as next_operator_name,
+         (select user_name from user where id = wf.old_remarker)  as old_remarker_name
   from wf_record_current_task wf;
 
 -- auto-generated definition
 create table wf_record_complete_task
 (
-  id            bigint(64)    not null
+  id              bigint(64)    not null
     primary key,
-  record_id     bigint(64)    not null,
-  operation     int           not null,
-  operator      bigint(64)    not null,
-  next_operator bigint(64)    null,
-  reason        varchar(1000) null,
-  old_data      varchar(1000) null,
-  status        int           null,
-  next_status   int           null,
-  hold1         varchar(64)   null,
-  hold2         varchar(64)   null,
-  hold3         varchar(64)   null,
-  gmt_create    timestamp     null,
-  gmt_modified  timestamp     null
+  record_id       bigint(64)    not null,
+  operation       int           not null,
+  operator        bigint(64)    not null,
+  next_operator   bigint(64)    null,
+  reason          varchar(1000) null,
+  old_data        varchar(1000) null,
+  old_remark      varchar(1000) null,
+  old_remark_time timestamp     null,
+  old_remarker    bigint(64)    null,
+  status          int           null,
+  next_status     int           null,
+  hold1           varchar(64)   null,
+  hold2           varchar(64)   null,
+  hold3           varchar(64)   null,
+  gmt_create      timestamp     null,
+  gmt_modified    timestamp     null
 )
   comment '数据工作流表';
 
 create view vw_wf_record_complete_task as
   select wf.*,
          (select user_name from user where id = wf.operator)      as operator_name,
-         (select user_name from user where id = wf.next_operator) as next_operator_name
+         (select user_name from user where id = wf.next_operator) as next_operator_name,
+         (select user_name from user where id = wf.old_remarker)  as old_remarker_name
   from wf_record_complete_task wf;
 
 -- auto-generated definition
@@ -592,6 +606,9 @@ create table data_report
   order_id      bigint(64)    not null,
   batch_id      bigint(64)    not null,
   data          varchar(1000) null,
+  remark        varchar(1000) null,
+  remark_time   timestamp     null,
+  remarker      bigint(64)    null,
   img_url       varchar(1000) null,
   status        int           not null,
   next_operator bigint(64)    null,
@@ -611,7 +628,8 @@ create or replace view vw_data_report_detail as
          ba.batch_no,
          (select user_name from user where id = re.next_operator) as next_operator_name,
          (select user_name from user where id = re.create_user)   as create_user_name,
-         (select user_name from user where id = re.modify_user)   as modify_user_name
+         (select user_name from user where id = re.modify_user)   as modify_user_name,
+         (select user_name from user where id = re.remarker)      as remarker_name
   from data_report re,
        data_batch ba
   where re.batch_id = ba.id;
@@ -619,53 +637,61 @@ create or replace view vw_data_report_detail as
 -- auto-generated definition
 create table wf_report_current_task
 (
-  id            bigint(64)    not null
+  id              bigint(64)    not null
     primary key,
-  report_id     bigint(64)    not null,
-  operation     int           not null,
-  operator      bigint(64)    not null,
-  next_operator bigint(64)    null,
-  reason        varchar(1000) null,
-  old_data      varchar(1000) null,
-  status        int           null,
-  next_status   int           null,
-  hold1         varchar(64)   null,
-  hold2         varchar(64)   null,
-  hold3         varchar(64)   null,
-  gmt_create    timestamp     null,
-  gmt_modified  timestamp     null
+  report_id       bigint(64)    not null,
+  operation       int           not null,
+  operator        bigint(64)    not null,
+  next_operator   bigint(64)    null,
+  reason          varchar(1000) null,
+  old_data        varchar(1000) null,
+  old_remark      varchar(1000) null,
+  old_remark_time timestamp     null,
+  old_remarker    bigint(64)    null,
+  status          int           null,
+  next_status     int           null,
+  hold1           varchar(64)   null,
+  hold2           varchar(64)   null,
+  hold3           varchar(64)   null,
+  gmt_create      timestamp     null,
+  gmt_modified    timestamp     null
 )
   comment '数据工作流表';
 
 create view vw_wf_report_current_task as
   select wf.*,
          (select user_name from user where id = wf.operator)      as operator_name,
-         (select user_name from user where id = wf.next_operator) as next_operator_name
+         (select user_name from user where id = wf.next_operator) as next_operator_name,
+         (select user_name from user where id = wf.old_remarker)  as old_remarker_name
   from wf_report_current_task wf;
 
 create table wf_report_complete_task
 (
-  id            bigint(64)    not null
+  id              bigint(64)    not null
     primary key,
-  report_id     bigint(64)    not null,
-  operation     int           not null,
-  operator      bigint(64)    not null,
-  next_operator bigint(64)    null,
-  reason        varchar(1000) null,
-  old_data      varchar(1000) null,
-  status        int           null,
-  next_status   int           null,
-  hold1         varchar(64)   null,
-  hold2         varchar(64)   null,
-  hold3         varchar(64)   null,
-  gmt_create    timestamp     null,
-  gmt_modified  timestamp     null
+  report_id       bigint(64)    not null,
+  operation       int           not null,
+  operator        bigint(64)    not null,
+  next_operator   bigint(64)    null,
+  reason          varchar(1000) null,
+  old_data        varchar(1000) null,
+  old_remark      varchar(1000) null,
+  old_remark_time timestamp     null,
+  old_remarker    bigint(64)    null,
+  status          int           null,
+  next_status     int           null,
+  hold1           varchar(64)   null,
+  hold2           varchar(64)   null,
+  hold3           varchar(64)   null,
+  gmt_create      timestamp     null,
+  gmt_modified    timestamp     null
 )
   comment '数据工作流表';
 
 create view vw_wf_report_complete_task as
   select wf.*,
          (select user_name from user where id = wf.operator)      as operator_name,
-         (select user_name from user where id = wf.next_operator) as next_operator_name
+         (select user_name from user where id = wf.next_operator) as next_operator_name,
+         (select user_name from user where id = wf.old_remarker)  as old_remarker_name
   from wf_report_complete_task wf;
 

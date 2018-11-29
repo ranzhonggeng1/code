@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<medicines>
+	<medicine id="000001" name="度他雄胺" factoryName="新越">
+		<checkClass id="1" name="性状">
+			<checkActions refId="rId1">
+			</checkActions>
+		</checkClass>
+		<checkClass id="2" name="鉴别">
+			<checkActions refId="rId2">
+			</checkActions>
+		</checkClass>
+		<checkClass id="3" name="检查">
+			<checkActions refId="rId3">
+			</checkActions>
+		</checkClass>
+	</medicine>
+	<medicine id="000002" name="诺氟沙星" factoryName="新越">
+		<checkClass id="1" name="性状">
+			<checkActions refId="rId1">
+			</checkActions>
+		</checkClass>
+		<checkClass id="2" name="鉴别">
+			<checkActions refId="rId2">
+			</checkActions>
+		</checkClass>
+		<checkClass id="3" name="检查">
+			<checkActions refId="rId3">
+			</checkActions>
+		</checkClass>
+	</medicine>
+</medicines>
+

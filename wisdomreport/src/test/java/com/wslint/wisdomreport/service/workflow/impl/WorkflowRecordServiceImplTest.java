@@ -4,7 +4,6 @@ import static com.wslint.wisdomreport.common.WorkflowControl.getRecordNextStatus
 import static com.wslint.wisdomreport.common.WorkflowControl.getRecordStatusByOperation;
 import static com.wslint.wisdomreport.constant.WorkflowConstant.BATCH_OPERATION_COMMIT;
 import static com.wslint.wisdomreport.constant.WorkflowConstant.BATCH_OPERATION_REJECT;
-import static com.wslint.wisdomreport.constant.WorkflowConstant.BATCH_STATUS_EXPERIMENT;
 import static com.wslint.wisdomreport.constant.WorkflowConstant.OPERATION_COMPLETE;
 import static com.wslint.wisdomreport.constant.WorkflowConstant.RECORD_OPERATION_EDIT_DRAFT;
 import static com.wslint.wisdomreport.constant.WorkflowConstant.RECORD_OPERATION_EDIT_EFFECTIVE;
@@ -93,6 +92,23 @@ public class WorkflowRecordServiceImplTest {
     checkTasks(dataRecordDTO, operation, status, nextStatus);
   }
 
+  private void checkDatas(DataRecordDTO dataRecordDTO, int operation, int rightStatus) {
+    if (operation == RECORD_OPERATION_REVIEW_DIRECT) {
+      rightStatus = RECORD_STATUS_EFFECTIVE;
+    }
+    if (operation == RECORD_OPERATION_EDIT_DRAFT || operation == RECORD_OPERATION_EDIT_EFFECTIVE) {
+      Assert.assertEquals(dataRecordDTO.getData(), "new_data");
+    }
+    Assert.assertEquals(dataRecordDTO.getStatus(), new Integer(rightStatus));
+    Assert.assertNotNull(dataRecordDTO.getGmtModified());
+    Assert.assertEquals(dataRecordDTO.getModifyUser(), Constant.ADMIN_ID);
+    if (rightStatus == RECORD_STATUS_REVIEW || rightStatus == RECORD_STATUS_APPROVE) {
+      Assert.assertEquals(dataRecordDTO.getNextOperator(), Constant.ADMIN_ID);
+    } else {
+      Assert.assertNull(dataRecordDTO.getNextOperator());
+    }
+  }
+
   private void checkTasks(DataRecordDTO dataRecordDTO, int operation, int status, int nextStatus) {
     List<WorkflowRecordTaskDTO> workflowRecordTaskDTOList = new ArrayList<>();
     if (nextStatus == STATUS_END) {
@@ -112,23 +128,6 @@ public class WorkflowRecordServiceImplTest {
     Assert.assertNotNull(workflowRecordTaskDTO.getGmtModified());
   }
 
-  private void checkDatas(DataRecordDTO dataRecordDTO, int operation, int rightStatus) {
-    if (operation == RECORD_OPERATION_REVIEW_DIRECT) {
-      rightStatus = BATCH_STATUS_EXPERIMENT;
-    }
-    if (operation == RECORD_OPERATION_EDIT_DRAFT || operation == RECORD_OPERATION_EDIT_EFFECTIVE) {
-      Assert.assertEquals(dataRecordDTO.getData(), "new_data");
-    }
-    Assert.assertEquals(dataRecordDTO.getStatus(), new Integer(rightStatus));
-    Assert.assertNotNull(dataRecordDTO.getGmtModified());
-    Assert.assertEquals(dataRecordDTO.getModifyUser(), Constant.ADMIN_ID);
-    if (rightStatus == RECORD_STATUS_REVIEW || rightStatus == RECORD_STATUS_APPROVE) {
-      Assert.assertEquals(dataRecordDTO.getNextOperator(), Constant.ADMIN_ID);
-    } else {
-      Assert.assertNull(dataRecordDTO.getNextOperator());
-    }
-  }
-
   private List<WorkflowRecordTaskDTO> setUpTasks() {
     List<WorkflowRecordTaskDTO> tasks = new ArrayList<>();
     tasks.add(setUpTask(101000001L, RECORD_OPERATION_SAVE, null, null));
@@ -145,13 +144,13 @@ public class WorkflowRecordServiceImplTest {
     tasks.add(setUpTask(107000002L, RECORD_OPERATION_EDIT_DRAFT, null, "new_data"));
     tasks.add(setUpTask(108000001L, RECORD_OPERATION_EDIT_EFFECTIVE, null, "new_data"));
     tasks.add(setUpTask(108000002L, RECORD_OPERATION_EDIT_EFFECTIVE, null, "new_data"));
-    tasks.add(setUpTask(109000001L, OPERATION_COMPLETE, null, null));
-    tasks.add(setUpTask(109000002L, OPERATION_COMPLETE, null, null));
 
     tasks.add(setUpTask(5000001L, BATCH_OPERATION_COMMIT, Constant.ADMIN_ID, null));
     tasks.add(setUpTask(5000002L, BATCH_OPERATION_COMMIT, Constant.ADMIN_ID, null));
     tasks.add(setUpTask(9000001L, BATCH_OPERATION_REJECT, null, null));
     tasks.add(setUpTask(9000002L, BATCH_OPERATION_REJECT, null, null));
+    tasks.add(setUpTask(0000001L, OPERATION_COMPLETE, null, null));
+    tasks.add(setUpTask(0000002L, OPERATION_COMPLETE, null, null));
     return tasks;
   }
 
@@ -182,13 +181,13 @@ public class WorkflowRecordServiceImplTest {
     datas.add(getData(107000002L, "10702_old_data", RECORD_STATUS_DRAFT, null));
     datas.add(getData(108000001L, "10801_old_data", RECORD_STATUS_EFFECTIVE, null));
     datas.add(getData(108000002L, "10802_old_data", RECORD_STATUS_EFFECTIVE, null));
-    datas.add(getData(109000001L, "10901_old_data", RECORD_STATUS_APPROVE, Constant.ADMIN_ID));
-    datas.add(getData(109000002L, "10902_old_data", RECORD_STATUS_APPROVE, Constant.ADMIN_ID));
 
     datas.add(getData(5000001L, "501_old_data", RECORD_STATUS_EFFECTIVE, null));
     datas.add(getData(5000002L, "502_old_data", RECORD_STATUS_EFFECTIVE, null));
     datas.add(getData(9000001L, "901_old_data", RECORD_STATUS_APPROVE, Constant.ADMIN_ID));
     datas.add(getData(9000002L, "902_old_data", RECORD_STATUS_APPROVE, Constant.ADMIN_ID));
+    datas.add(getData(0000001L, "001_old_data", RECORD_STATUS_APPROVE, Constant.ADMIN_ID));
+    datas.add(getData(0000002L, "002_old_data", RECORD_STATUS_APPROVE, Constant.ADMIN_ID));
     dataRecordDao.insertDataRecords(datas);
   }
 

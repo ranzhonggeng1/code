@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<checkActions>
+	<checkAction name="有关物质1" htmlURL="htmlTemplate//度他雄胺-检查//TR 01-008-01.02度他雄胺检验记录_检查_有关物质1.htm" id="0C" >
+		<methods>
+			<method id="f001" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f002" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f003" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f004" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f005" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f006" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f007" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f008" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f009" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f00a" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f00b" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f00c" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f00d" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f00e" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f00f" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f010" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f011" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f012" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f013" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f014" isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f015" isAutoInput="true" isNULL="false" >
+				<imageUrl></imageUrl>
+				<name>称量</name>
+				<deviceSetId>2</deviceSetId>
+			</method>
+			<method id="f016" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f017" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f018" isAutoInput="true" isNULL="false" >
+				<imageUrl></imageUrl>
+				<name>称量</name>
+				<deviceSetId>2</deviceSetId>
+			</method>
+			<method id="f019" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>称量</name>
+				<deviceSetId>2</deviceSetId>
+			</method>
+			<method id="f01a" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f01b" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f01c" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f01d" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f01e" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f01f" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f020" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f021" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_Figure_No()</formula>
+			</method>
+			<method id="f022"  isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f023" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f024" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_Figure_No()</formula>
+			</method>
+			<method id="f025" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f026" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f027" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_Figure_No()</formula>
+			</method>
+			<method id="f028" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f029" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f02a" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_Figure_No()</formula>
+			</method>
+			<method id="f02b" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f02c" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f02d" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_Figure_No()</formula>
+			</method>
+			<method id="f02e" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f02f" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f030" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_Figure_No()</formula>
+			</method>
+			<method id="f031" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f032" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+			</method>
+			<method id="f033" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>Average(f023,f026,f029,f02c,f02f)</formula>
+			</method>
+			<method id="f034" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>RSD(f023,f026,f029,f02c,f02f)</formula>
+			</method>
+			<method id="f035" isAutoInput="true"  isNULL="false" >
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>Average(f023,f026,f029,f02c,f02f,f032)</formula>
+			</method>
+			<method id="f036" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>对照品</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>RSD(f023,f026,f029,f02c,f02f,f032)</formula>
+			</method>
+			<method id="f037" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_Figure_No()</formula>
+			</method>
+			<method id="f038" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+			</method>
+			<method id="f039" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityRTByRelative(data,0.4627,-0.05,0.05)</formula>
+			</method>
+			<method id="f03a" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityAs(data,f039)</formula>
+			</method>
+			<method id="f03b"  isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityContent(f03a,0.70,f035)</formula>
+			</method>
+			<method id="f03c" isAutoInput="true"  isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityRTByRelative(data,0.68,-0.4,0.4)</formula>
+			</method>
+			<method id="f03d" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityAs(data,f03c)</formula>
+			</method>
+			<method id="f03e" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityContent(f03d,0.74,f035)</formula>
+			</method>
+			<method id="f03f" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityRTByRelative(data,0.90,-0.05,0.05)</formula>
+			</method>
+			<method id="f040" isAutoInput="true" isNULL="false" >
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityAs(data,f03f)</formula>
+			</method>
+			<method id="f041" isAutoInput="true"  isNULL="false" >
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityContent(f040,1.38,f035)</formula>
+			</method>
+			<method id="f042"  isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_AnotherOneImpurity(data,f039,f03c,f03f)</formula>
+			</method>
+			<method id="f043" isAutoInput="true" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityAs(data,f042)</formula>
+			</method>
+			<method id="f044"  isAutoInput="true" isNULL="false" ImageUrl="">
+				<imageUrl></imageUrl>
+				<name>样本</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>SPY_ImpurityContent(f043,1,f035)</formula>
+			</method>
+			<method id="fffc" isAutoInput="false"  isNULL="false">
+				<name>check</name>
+				<imageUrl></imageUrl>
+			</method>
+			<method id="fffd" isAutoInput="false"  isNULL="false">
+				<imageUrl></imageUrl>
+				<name>check</name>
+			</method>
+			<method id="fffe" isAutoInput="false"  isNULL="false">
+				<imageUrl></imageUrl>
+				<name>time_checker</name>
+			</method>
+			<method id="ffff" isAutoInput="false"  isNULL="false">
+				<imageUrl></imageUrl>
+				<name>time_reviewer</name>
+			</method>
+		</methods>
+	</checkAction>
+	<checkAction name="有关物质2" htmlURL="htmlTemplate//度他雄胺-检查//TR 01-008-01.02度他雄胺检验记录_检查_有关物质2.htm" id="0D" >
+		<methods>
+			<method id="f008" isAutoInput="false"  isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method1</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>(AVERAGE(method2,method3)+POWER(5,2))*5</formula>
+			</method>
+			<method id="f009" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method2</name>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f00A"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method3</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f00B"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method4</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f00C"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method5</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f00D"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method6</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f00E"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method7</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+		</methods>
+	</checkAction>
+	<checkAction name="有关物质3" htmlURL="htmlTemplate//度他雄胺-检查//TR 01-008-01.02度他雄胺检验记录_检查_有关物质3.htm" id="0E" >
+		<methods>
+			<method id="f00F"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method1</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>(AVERAGE(method2,method3)+POWER(5,2))*5</formula>
+			</method>
+			<method id="f010"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method2</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f011"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method3</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f012"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method4</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f013"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method5</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f014"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method6</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f015" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method7</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+		</methods>
+	</checkAction>
+	<checkAction name="残留溶剂" htmlURL="htmlTemplate//度他雄胺-检查//TR 01-008-01.02度他雄胺检验记录_检查_残留溶剂.htm" id="0F" >
+		<methods>
+			<method id="f016"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method1</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>(AVERAGE(method2,method3)+POWER(5,2))*5</formula>
+			</method>
+			<method id="f017"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method2</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f018"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method3</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f019"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method4</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f01A"  isAutoInput="false" isNULL="false" >
+				<imageUrl></imageUrl>
+				<name>method5</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f01B"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method6</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f01C"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method7</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+		</methods>
+	</checkAction>
+	<checkAction name="微生物限度" htmlURL="htmlTemplate//度他雄胺-检查//TR 01-008-01.02度他雄胺检验记录_检查_微生物限度.htm" id="10" >
+		<methods>
+			<method id="f01D" isAutoInput="false"  isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method1</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>(AVERAGE(method2,method3)+POWER(5,2))*5</formula>
+			</method>
+			<method id="f01E"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method2</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f01f"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method3</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f020" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method4</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>v</formula>
+			</method>
+			<method id="f021" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method5</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f022"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method6</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f023"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method7</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+		</methods>
+	</checkAction>
+	<checkAction name="含量" htmlURL="htmlTemplate//度他雄胺-检查//TR 01-008-01.02度他雄胺检验记录_检查_含量.htm" id="11" >
+		<methods>
+			<method id="f024"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method1</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>(AVERAGE(method2,method3)+POWER(5,2))*5</formula>
+			</method>
+			<method id="f025" isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method2</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f026"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method3</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f027"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method4</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f028"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method5</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f029"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method6</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+			<method id="f02A"  isAutoInput="false" isNULL="false">
+				<imageUrl></imageUrl>
+				<name>method7</name>
+				<deviceSetId>1</deviceSetId>
+				<formula>AVERAGE(method2,method3)</formula>
+			</method>
+		</methods>
+	</checkAction>
+</checkActions>

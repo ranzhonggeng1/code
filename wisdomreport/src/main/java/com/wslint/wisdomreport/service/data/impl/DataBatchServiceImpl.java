@@ -47,6 +47,7 @@ public class DataBatchServiceImpl implements IDataBatchService {
    */
   @Override
   public Map<String, Object> save(List<DataClassDTO> dataClassDTOList) throws Exception {
+    LOGGER.info("创建批次 - {} 条！", dataClassDTOList.size());
     List<WorkflowBatchTaskDTO> workflowBatchTaskDTOList = new ArrayList<>();
     List<DataBatchDTO> dataBatchDTOList = new ArrayList<>();
     Map<Long, List<String>> medicineIdBatchNosMap = new HashMap<>();
@@ -74,13 +75,19 @@ public class DataBatchServiceImpl implements IDataBatchService {
       LOGGER.error("当前药品批次已存在！");
       throw new DataException("数据保存失败!");
     }
-    if (!dataBatchDao.insertDataBatchs(dataBatchDTOList)) {
-      LOGGER.error("批次数据保存失败！");
-      throw new DataException("数据保存失败!");
+    if (!dataBatchDTOList.isEmpty()) {
+      LOGGER.info("批次数据保存 - {} 条", dataBatchDTOList.size());
+      if (!dataBatchDao.insertDataBatchs(dataBatchDTOList)) {
+        LOGGER.error("批次数据保存失败！");
+        throw new DataException("数据保存失败!");
+      }
     }
-    if (!dataClassDao.insertDataClasss(dataClassDTOList)) {
-      LOGGER.error("分类数据保存失败！");
-      throw new DataException("数据保存失败!");
+    if (!dataClassDTOList.isEmpty()) {
+      LOGGER.info("类别数据保存 - {} 条", dataClassDTOList.size());
+      if (!dataClassDao.insertDataClasss(dataClassDTOList)) {
+        LOGGER.error("类别数据保存失败！");
+        throw new DataException("数据保存失败!");
+      }
     }
     int result = iWorkflowBatchService.doWorkflow(workflowBatchTaskDTOList);
     if (result == ReturnConstant.WORKFLOW_SUCCESS) {
@@ -89,6 +96,22 @@ public class DataBatchServiceImpl implements IDataBatchService {
     }
     LOGGER.error("创建批次失败！");
     throw new DataException("数据保存失败!");
+  }
+
+  @Override
+  public Long fkGetClassIdByRubbish(
+      Long medicineId, String batchNo, Long firstClassId, Long secondClassId) {
+    return dataBatchDao.fkGetClassIdByRubbish4(medicineId, batchNo, firstClassId, secondClassId);
+  }
+
+  @Override
+  public Long fkGetBatchIdByRubbish(Long medicineId, String batchNo) {
+    return dataBatchDao.fkGetBatchIdByRubbish2(medicineId, batchNo);
+  }
+
+  @Override
+  public Long fkGetClassIdByRubbish(Long batchId, Long firstClassId, Long secondClassId) {
+    return dataBatchDao.fkGetClassIdByRubbish3(batchId, firstClassId, secondClassId);
   }
 
   /**

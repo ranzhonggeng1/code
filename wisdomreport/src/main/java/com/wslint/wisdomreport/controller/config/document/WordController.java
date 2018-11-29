@@ -79,7 +79,6 @@ public class WordController {
    * @param firstClassId 大类id
    * @param secondClassId 小类id
    * @return 处理结果
-   * @throws Exception
    */
   @ApiOperation(value = "小类word文档上传", notes = "小类word文档上传")
   @ApiImplicitParams({
@@ -93,8 +92,7 @@ public class WordController {
       @RequestParam("file") MultipartFile uploadFile,
       @RequestParam Long medicineId,
       @RequestParam Long firstClassId,
-      @RequestParam Long secondClassId)
-      throws Exception {
+      @RequestParam Long secondClassId) {
     if (uploadFile == null || uploadFile.isEmpty()) {
       return ReturnUtils.failureMap("空文件，上传失败");
     }
@@ -115,7 +113,6 @@ public class WordController {
    * @param description 描述修改信息
    * @param idMax id最大值
    * @return 处理结果
-   * @throws Exception
    */
   @ApiOperation(value = "药品word文档上传工作区", notes = "药品文档上传")
   @ApiImplicitParams({
@@ -129,8 +126,7 @@ public class WordController {
       @RequestParam("file") MultipartFile uploadFile,
       @RequestParam Long medicineId,
       @RequestParam String description,
-      @RequestParam Long idMax)
-      throws Exception {
+      @RequestParam Long idMax) {
     if (uploadFile == null || uploadFile.isEmpty()) {
       return ReturnUtils.failureMap("药品word为空，上传失败");
     }
@@ -140,16 +136,9 @@ public class WordController {
   /**
    * 从工作区下载药品word模板
    *
-   * @param medicineId 药品ID
-   * @param versionId 药品word版本信息
-   */
-  /**
-   * 从工作区下载药品word模板
-   *
    * @param response 返回结果
    * @param medicineId 药品id
    * @param versionId 版本号
-   * @throws Exception
    */
   @ApiOperation(value = "药品word模板下载", notes = "药品word模板下载")
   @ApiImplicitParams({
@@ -158,8 +147,7 @@ public class WordController {
   })
   @RequestMapping(value = "/download/medicine", method = RequestMethod.GET)
   public void downloadMedicineWord(
-      HttpServletResponse response, @RequestParam Long medicineId, @RequestParam String versionId)
-      throws Exception {
+      HttpServletResponse response, @RequestParam Long medicineId, @RequestParam String versionId) {
     // word模板位置-相对路径
     String medicineWordVersionPath = FileUtils.getMedicineWordVersionPath(medicineId) + versionId;
     logger.info("下载药品word模板位置----" + medicineWordVersionPath);
@@ -174,13 +162,12 @@ public class WordController {
    *
    * @param medicineId 药品id
    * @return 处理结果
-   * @throws Exception
    */
   @ApiOperation(value = "查询药品word版本号", notes = "查询药品word版本列表")
   @ApiImplicitParams({@ApiImplicitParam(name = "medicineId", value = "药品ID", required = true)})
   @RequestMapping(value = "/version", method = RequestMethod.GET)
   @ResponseBody
-  public Map<String, Object> getMedicineVersion(@RequestParam Long medicineId) throws Exception {
+  public Map<String, Object> getMedicineVersion(@RequestParam Long medicineId) {
     VersionDTO versionDTO = iWordDao.getWordVersionInfoById(medicineId);
     ConfigDTO configDTO = versionDTO.getConfig();
     List<IdDescriptionDTO> idDescriptionDTOS = versionDTO.getIdDescriptionDTOS();
@@ -192,13 +179,12 @@ public class WordController {
    *
    * @param medicineId 药品ID
    * @return 处理结果
-   * @throws Exception
    */
   @ApiOperation(value = "查询药品word最大ID值", notes = "查询药品word最大ID值")
   @ApiImplicitParams({@ApiImplicitParam(name = "medicineId", value = "药品ID", required = true)})
   @RequestMapping(value = "/getId", method = RequestMethod.GET)
   @ResponseBody
-  public Map<String, Object> getMedicineMaxId(@RequestParam Long medicineId) throws Exception {
+  public Map<String, Object> getMedicineMaxId(@RequestParam Long medicineId) {
     VersionDTO versionDTO = iWordDao.getWordVersionInfoById(medicineId);
     ConfigDTO configDTO = versionDTO.getConfig();
     Map<String, Object> rtnMap = new HashMap<>();
@@ -208,14 +194,13 @@ public class WordController {
   }
 
   /**
-   * 推送药品当前word版本至工作区，需要文件，先保存再推送
+   * 推送药品当前word版本至生效区，需要先生成历史版本，推送生效区
    *
    * @param uploadFile 上传文件
    * @param medicineId 药品id
    * @param description 描述修改信息
    * @param idMax 空格id最大值
    * @return 处理结果
-   * @throws Exception
    */
   @ApiOperation(value = "设置药品word模板至生效区", notes = "设置药品word模板生效")
   @ApiImplicitParams({
@@ -229,8 +214,7 @@ public class WordController {
       @RequestParam("file") MultipartFile uploadFile,
       @RequestParam Long medicineId,
       @RequestParam String description,
-      @RequestParam Long idMax)
-      throws Exception {
+      @RequestParam Long idMax) {
     if (uploadFile == null || uploadFile.isEmpty()) {
       return ReturnUtils.failureMap("药品word为空，上传失败");
     }

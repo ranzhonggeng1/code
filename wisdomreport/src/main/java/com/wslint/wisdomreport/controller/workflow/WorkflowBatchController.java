@@ -11,6 +11,7 @@ import com.wslint.wisdomreport.domain.vo.workflow.BatchRedoVO;
 import com.wslint.wisdomreport.domain.vo.workflow.BatchRejectVO;
 import com.wslint.wisdomreport.domain.vo.workflow.BatchUndoVO;
 import com.wslint.wisdomreport.domain.vo.workflow.BatchWorkflowVO;
+import com.wslint.wisdomreport.domain.vo.workflow.ClassIdVO;
 import com.wslint.wisdomreport.exception.WorkflowException;
 import com.wslint.wisdomreport.service.data.IDataBatchService;
 import com.wslint.wisdomreport.service.workflow.IWorkflowBatchService;
@@ -37,7 +38,7 @@ import springfox.documentation.annotations.ApiIgnore;
  * @author yuxr
  * @since 2018/11/9 11:29
  */
-@Api(tags = "批次工作流接口", description = "提供批次工作流流转接口")
+@Api(tags = "3 工作流接口", description = "提供工作流流转接口")
 @RestController
 @Transactional(rollbackFor = Exception.class)
 @RequestMapping(value = "/workflow/batch")
@@ -84,15 +85,30 @@ public class WorkflowBatchController {
           dto.setReason(vo.getReason());
           List<DataClassDTO> dataClassDTOS = new ArrayList<>();
           dto.setDataClassDTOS(dataClassDTOS);
-          List<Long> ids = vo.getClassIds();
-          if (ids != null) {
-            ids.forEach(
-                id -> {
+          ///          List<Long> ids = vo.getClassIds();
+          ///          if (ids != null) {
+          ///            ids.forEach(
+          ///                id -> {
+          ///                  DataClassDTO data = new DataClassDTO();
+          ///                  dataClassDTOS.add(data);
+          ///                  data.setId(id);
+          ///                });
+          ///          }
+          // fk
+          List<ClassIdVO> classIdVOS = vo.getClassIdVOS();
+          if (!classIdVOS.isEmpty()) {
+            classIdVOS.forEach(
+                classVO -> {
                   DataClassDTO data = new DataClassDTO();
                   dataClassDTOS.add(data);
-                  data.setId(id);
+                  data.setFirstClassId(classVO.getFirstClassId());
+                  data.setSecondClassId(classVO.getSecondClassId());
+                  data.setId(
+                      iDataBatchService.fkGetClassIdByRubbish(
+                          vo.getBatchId(), classVO.getFirstClassId(), classVO.getSecondClassId()));
                 });
           }
+          // fk
         });
     int result = iWorkflowBatchService.redo(workflowBatchRedoDTOS);
     if (result == ReturnConstant.WORKFLOW_SUCCESS) {
@@ -111,7 +127,7 @@ public class WorkflowBatchController {
    */
   @ApiIgnore
   @ApiOperation(value = "提交批次审核接口", notes = "提供提交批次审核功能")
-  @RequestMapping(value = "/commit", method = RequestMethod.POST)
+  @RequestMapping(value = "/commitBak", method = RequestMethod.POST)
   public Map<String, Object> commit(@RequestBody BatchCommitVO commitVO) throws Exception {
     WorkflowBatchTaskDTO workflowBatchTaskDTO = new WorkflowBatchTaskDTO();
     workflowBatchTaskDTO.setBatchId(commitVO.getBatchId());
@@ -136,7 +152,7 @@ public class WorkflowBatchController {
    */
   @ApiIgnore
   @ApiOperation(value = "审核批次通过接口", notes = "提供审核批次通过功能")
-  @RequestMapping(value = "/pass", method = RequestMethod.POST)
+  @RequestMapping(value = "/passBak", method = RequestMethod.POST)
   public Map<String, Object> pass(@RequestBody BatchPassVO batchPassVO) throws Exception {
     WorkflowBatchTaskDTO workflowBatchTaskDTO = new WorkflowBatchTaskDTO();
     workflowBatchTaskDTO.setBatchId(batchPassVO.getBatchId());
@@ -162,7 +178,7 @@ public class WorkflowBatchController {
    */
   @ApiIgnore
   @ApiOperation(value = "审核批次驳回接口", notes = "提供审核批次驳回功能")
-  @RequestMapping(value = "/reject", method = RequestMethod.POST)
+  @RequestMapping(value = "/rejectBak", method = RequestMethod.POST)
   public Map<String, Object> reject(@RequestBody BatchRejectVO batchRejectVO) throws Exception {
     WorkflowBatchTaskDTO workflowBatchTaskDTO = new WorkflowBatchTaskDTO();
     workflowBatchTaskDTO.setBatchId(batchRejectVO.getBatchId());
@@ -188,7 +204,7 @@ public class WorkflowBatchController {
    */
   @ApiIgnore
   @ApiOperation(value = "重做批次实验接口", notes = "提供重做批次实验功能")
-  @RequestMapping(value = "/undo", method = RequestMethod.POST)
+  @RequestMapping(value = "/undoBak", method = RequestMethod.POST)
   public Map<String, Object> undo(@RequestBody BatchUndoVO batchUndoVO) throws Exception {
     WorkflowBatchTaskDTO workflowBatchTaskDTO = new WorkflowBatchTaskDTO();
     workflowBatchTaskDTO.setBatchId(batchUndoVO.getBatchId());

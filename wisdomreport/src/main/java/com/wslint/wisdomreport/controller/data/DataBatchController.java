@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author yuxr
  * @since 2018/11/12 10:36
  */
-@Api(tags = "批次数据接口", description = "提供批次数据查询接口")
+@Api(tags = "2 数据接口", description = "提供数据接口")
 @RestController
 @RequestMapping(value = "/data/batch")
 public class DataBatchController {
@@ -106,7 +106,6 @@ public class DataBatchController {
   @ApiOperation(value = "待办列表查询", notes = "提供待办列表查询功能")
   @RequestMapping(value = "/todo", method = RequestMethod.POST)
   public Map<String, Object> todo() throws Exception {
-
     List<DataBatchDTO> dataBatchDTOList = iDataBatchService.getDataBatchByNextOperator();
     List<DataBatchTodoReturnVO> dataBatchTodoReturnVOS =
         BeanCopyUtil.copyList(dataBatchDTOList, DataBatchTodoReturnVO.class);

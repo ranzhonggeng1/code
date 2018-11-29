@@ -15,6 +15,9 @@ public class WorkflowReportTraceReturnVO {
   private String nextOperatorName;
   private String reason;
   private String oldData;
+  private String oldRemark;
+  private Timestamp oldRemarkTime;
+  private String oldRemarkerName;
   private String imgUrl;
   private String statusName;
   private String nextStatusName;
@@ -67,6 +70,29 @@ public class WorkflowReportTraceReturnVO {
 
   public void setOldData(String oldData) {
     this.oldData = oldData;
+  }
+
+  public String getOldRemark() {
+    return oldRemark;
+  }
+
+  public void setOldRemark(String oldRemark) {
+    this.oldRemark = oldRemark;
+  }
+  public Timestamp getOldRemarkTime() {
+    return oldRemarkTime;
+  }
+
+  public void setOldRemarkTime(Timestamp oldRemarkTime) {
+    this.oldRemarkTime = oldRemarkTime;
+  }
+
+  public String getOldRemarkerName() {
+    return oldRemarkerName;
+  }
+
+  public void setOldRemarkerName(String oldRemarkerName) {
+    this.oldRemarkerName = oldRemarkerName;
   }
 
   public String getImgUrl() {

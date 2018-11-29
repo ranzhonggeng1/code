@@ -51,8 +51,7 @@ public class WorkflowRecordServiceImpl implements IWorkflowRecordService {
    * @return 处理结果
    */
   @Override
-  public int doWorkflow(List<WorkflowRecordTaskDTO> workflowRecordTaskDTOList)
-      throws Exception {
+  public int doWorkflow(List<WorkflowRecordTaskDTO> workflowRecordTaskDTOList) throws Exception {
     List<DataRecordDTO> dataRecordDTOList =
         dataRecordDao.getRecordsByRecordIds(workflowRecordTaskDTOList);
     Map dataMap = CommonUtils.getMapByKeyFromList(Constant.PROPERTY_ID, dataRecordDTOList);
@@ -68,7 +67,7 @@ public class WorkflowRecordServiceImpl implements IWorkflowRecordService {
         LOGGER.error("id = {} 的记录数据工作流权限校验失败!", workflowData.getRecordId());
         throw new WorkflowException("工作流执行失败!");
       }
-      completeRecordTask(workflowData, dataRecordDTO.getData(), status, nextStatus);
+      completeRecordTask(workflowData, dataRecordDTO, status, nextStatus);
       completeRecordData(dataRecordDTO, workflowData, nextStatus);
       if (nextStatus == WorkflowConstant.STATUS_END) {
         backUpIds.add(workflowData.getRecordId());
@@ -134,11 +133,18 @@ public class WorkflowRecordServiceImpl implements IWorkflowRecordService {
    * 封装记录工作流数据
    *
    * @param recordTaskDTO 工作流数据
+   * @param dataRecordDTO 数据对象
    */
   private void completeRecordTask(
-      WorkflowRecordTaskDTO recordTaskDTO, String data, Integer status, Integer nextStatus) {
+      WorkflowRecordTaskDTO recordTaskDTO,
+      DataRecordDTO dataRecordDTO,
+      Integer status,
+      Integer nextStatus) {
     WorkflowUtils.completeWorkflowTask(recordTaskDTO, status, nextStatus);
-    recordTaskDTO.setOldData(data);
+    recordTaskDTO.setOldData(dataRecordDTO.getData());
+    recordTaskDTO.setOldRemark(dataRecordDTO.getRemark());
+    recordTaskDTO.setOldRemarker(dataRecordDTO.getRemarker());
+    recordTaskDTO.setOldRemarkTime(dataRecordDTO.getRemarkTime());
     if (recordTaskDTO.getOperation() == WorkflowConstant.RECORD_OPERATION_REVIEW_DIRECT) {
       recordTaskDTO.setOperator(recordTaskDTO.getNextOperator());
       recordTaskDTO.setNextOperator(null);
@@ -158,6 +164,9 @@ public class WorkflowRecordServiceImpl implements IWorkflowRecordService {
     if (isEdit && newData != null && !newData.isEmpty()) {
       dataRecordDTO.setData(newData);
     }
+    dataRecordDTO.setRemark(null);
+    dataRecordDTO.setRemarker(null);
+    dataRecordDTO.setRemarkTime(null);
     dataRecordDTO.setStatus(nextStatus);
     dataRecordDTO.setNextOperator(recordTaskDTO.getNextOperator());
     dataRecordDTO.setModifyUser(recordTaskDTO.getOperator());

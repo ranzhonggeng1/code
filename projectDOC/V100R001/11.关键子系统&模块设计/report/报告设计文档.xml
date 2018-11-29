@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<report>
+    <basicInfo>
+        <methods>
+            <method id="f001">
+                <name>报告书编号</name>
+            </method>
+            <method id="f002">
+                <name>批号</name>
+            </method>
+            <method id="f003">
+                <name>规格</name>
+            </method>
+            <method id="f004">
+                <name>代表量</name>
+            </method>
+            <method id="f005">
+                <name>包装</name>
+            </method>
+            <method id="f006">
+                <name>检验项目</name>
+            </method>
+            <method id="f007">
+                <name>检品来源</name>
+            </method>
+            <method id="f008">
+                <name>检验依据</name>
+            </method>
+            <method id="f009">
+                <name>检验日期</name>
+            </method>
+            <method id="f00a">
+                <name>有效期</name>
+            </method>
+            <method id="f00b">
+                <name>报告日期</name>
+            </method>
+        </methods>
+    </basicInfo>
+    <testResult>
+        <checkClass name="性状">
+            <checkAction name="外观">
+                <methods>
+                    <method id="f00c">
+                        <name>外观</name>
+                        <!-- 报告外观 -->
+                        <formula>reportResultAppearance()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="溶解度">
+                <methods>
+                    <method id="f00d">
+                        <name>溶解度</name>
+                        <!-- 报告溶解度 -->
+                        <formula>reportResultSolubility()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="比旋度">
+                <methods>
+                    <method id="f00e">
+                    <name>比旋度</name>
+                    <!-- 报告比旋度 -->
+                    <formula>reportResultSpecificRotation()</formula>
+                </method>
+                </methods>
+            </checkAction>
+        </checkClass>
+        <checkClass name="鉴别">
+            <checkAction name="HPLC鉴别">
+                <methods>
+                    <method id="f00f">
+                        <name>HPLC鉴别</name>
+                        <!-- 报告HPLC鉴别 -->
+                        <formula>reportResultHPLC()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="紫外鉴别">
+                <methods>
+                    <method id="f010">
+                        <name>紫外鉴别</name>
+                        <!-- 报告紫外鉴别 -->
+                        <formula>reportResultUVIdentifications()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="红外鉴别">
+                <methods>
+                    <method id="f011">
+                        <name>红外鉴别</name>
+                        <!-- 报告红外鉴别 -->
+                        <formula>reportResultIRIdentifications()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="有机氟化物鉴别">
+                <methods>
+                    <method id="f012">
+                        <name>有机氟化物鉴别</name>
+                        <!-- 报告有机氟化物鉴别 -->
+                        <formula>reportResultOFIdentifications()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+        </checkClass>
+        <checkClass name="检查">
+            <checkAction name="氯化物">
+                <methods>
+                    <method id="f013">
+                        <name>氯化物</name>
+                        <!-- 报告氯化物 -->
+                        <formula>reportResultChloride()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="有关物质1">
+                <methods>
+                    <method id="f014">
+                        <name>SM021102B</name>
+                        <!-- 报告有关物质1_SM021102B -->
+                        <formula>reportResultImpurityA()</formula>
+                    </method>
+                    <method id="f015">
+                        <name>SR021102c</name>
+                        <!-- 报告有关物质1_SM021102c -->
+                        <formula>reportResultImpurityA()</formula>
+                    </method>
+                    <method id="f016">
+                        <name>SR021102g</name>
+                        <!-- 报告有关物质1_SM021102g -->
+                        <formula>reportResultImpurityA()</formula>
+                    </method>
+                    <method id="f017">
+                        <name>其他单个杂质</name>
+                        <!-- 报告有关物质1_其他单个杂质 -->
+                        <formula>reportResultImpurityA()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="有关物质2">
+                <methods>
+                    <method id="f018">
+                        <name>SM021102A</name>
+                        <!-- 报告有关物质2_SM021102A -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f019">
+                        <name>SR021102f</name>
+                        <!-- 报告有关物质2_SR021102f -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f01a">
+                        <name>SR021102a</name>
+                        <!-- 报告有关物质2_SR021102a -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f01b">
+                        <name>SR021102e、SR021102n之和</name>
+                        <!-- 报告有关物质2_SR021102e、SR021102n之和 -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f01c">
+                        <name>SR021102b</name>
+                        <!-- 报告有关物质2_SR021102b -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f01d">
+                        <name>SR021102o</name>
+                        <!-- 报告有关物质2_SR021102b -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f01e">
+                        <name>SR021102j</name>
+                        <!-- 报告有关物质2_SR021102j -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f01f">
+                        <name>SR021102l</name>
+                        <!-- 报告有关物质2_SR021102l -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f020">
+                        <name>SR021102k</name>
+                        <!-- 报告有关物质2_SR021102k -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                    <method id="f021">
+                        <name>其他单个杂质</name>
+                        <!-- 报告有关物质2其他单个杂质 -->
+                        <formula>reportResultImpurityB()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="有关物质3">
+                <methods>
+                    <method id="f022">
+                        <name>SR021102d</name>
+                        <!-- 报告有关物质3_SR021102d -->
+                        <formula>reportResultImpurityC()</formula>
+                    </method>
+                    <method id="f023">
+                        <name>α-二聚体</name>
+                        <!-- 报告有关物质3_α-二聚体 -->
+                        <formula>reportResultImpurityC()</formula>
+                    </method>
+                    <method id="f024">
+                        <name>β-二聚体</name>
+                        <!-- 报告有关物质3_β-二聚体 -->
+                        <formula>reportResultImpurityC()</formula>
+                    </method>
+                    <method id="f025">
+                        <name>其他单个杂质</name>
+                        <!-- 报告有关物质3_其他单个杂质 -->
+                        <formula>reportResultImpurityC()</formula>
+                    </method>
+                    <method id="f026">
+                        <name>总杂</name>
+                        <!-- 报告有关物质2_SR021102b -->
+                        <formula>reportResultImpurityToTal()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="残留溶剂">
+                <methods>
+                    <method id="f027">
+                        <name>甲醇</name>
+                        <!-- 报告残留溶剂_甲醇 -->
+                        <formula>reportResultResidualSolventsMethanol()</formula>
+                    </method>
+                    <method id="f028">
+                        <name>乙腈</name>
+                        <!-- 报告残留溶剂_乙腈 -->
+                        <formula>reportResultMeCN()</formula>
+                    </method>
+                    <method id="f029">
+                        <name>二氯甲烷</name>
+                        <!-- 报告残留溶剂_二氯甲烷 -->
+                        <formula>reportResultDCM()</formula>
+                    </method>
+                    <method id="f02a">
+                        <name>正己烷</name>
+                        <!-- 报告残留溶剂_正己烷 -->
+                        <formula>reportResultN_hexane()</formula>
+                    </method>
+                    <method id="f02b">
+                        <name>乙酸乙酯</name>
+                        <!-- 报告残留溶剂乙酸乙酯 -->
+                        <formula>reportResultEtOAc()</formula>
+                    </method>
+                    <method id="f02c">
+                        <name>吡啶</name>
+                        <!-- 报告残留溶剂吡啶 -->
+                        <formula>reportResultPyridine()</formula>
+                    </method>
+                    <method id="f02d">
+                        <name>N,N-二甲基酰胺</name>
+                        <!-- 报告残留溶剂吡啶 -->
+                        <formula>reportResultNNDMA()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="干燥失重">
+                <methods>
+                    <method id="f02e">
+                        <name>干燥失重</name>
+                        <!-- 报告干燥失重 -->
+                        <formula>reportResultLOD()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="炽灼残渣">
+                <methods>
+                    <method id="f02f">
+                        <name>炽灼残渣</name>
+                        <!-- 报告炽灼残渣 -->
+                        <formula>reportResultAsh()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="重金属">
+                <methods>
+                    <method id="f030">
+                        <name>重金属</name>
+                        <!-- 报告重金属 -->
+                        <formula>reportResultPb()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+            <checkAction name="微生物限度">
+                <methods>
+                    <method id="f031">
+                        <name>微生物限度</name>
+                        <!-- 报告重金属 -->
+                        <formula>reportResultMicrobial()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+        </checkClass>
+
+        <checkClass name="含量">
+            <checkAction name="含量">
+                <methods>
+                    <method>
+                        <name>含量</name>
+                        <formula>reportResultContent()</formula>
+                    </method>
+                </methods>
+            </checkAction>
+        </checkClass>
+    </testResult>
+</report>

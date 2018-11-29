@@ -150,6 +150,41 @@ public class TemplateController {
     return ReturnUtils.failureMap("上传失败!");
   }
 
+  @ApiOperation(value = "模板页眉上传接口", notes = "header上传")
+  @ApiImplicitParams({
+    @ApiImplicitParam(name = "medicineId", value = "药品id", required = true, defaultValue = "1023")
+  })
+  @RequestMapping(value = "/header/upload", method = RequestMethod.POST)
+  @ResponseBody
+  public Map<String, Object> uploadHeader(
+      @RequestParam("file") MultipartFile uploadFile, @RequestParam Long medicineId) {
+    if (uploadFile == null || uploadFile.isEmpty()) {
+      return ReturnUtils.failureMap("空文件，上传失败!");
+    }
+    String htmlPath = FileUtils.getMedicineHeaderPath(medicineId);
+    // 生成的模板html模板头文件名样例：1023_header.html
+    String fileName = medicineId + XMLConstant.HTML_HEADER_SUFFIX;
+    String path = iFileService.upload(htmlPath, fileName, uploadFile);
+    if (!path.isEmpty()) {
+      return ReturnUtils.successMap(path, "上传成功!");
+    }
+    return ReturnUtils.failureMap("上传失败!");
+  }
+
+  @ApiOperation(value = "模板页眉下载接口", notes = "header下载")
+  @ApiImplicitParams({
+    @ApiImplicitParam(name = "medicineId", value = "药品id", required = true, defaultValue = "1023")
+  })
+  @RequestMapping(value = "/header/download", method = RequestMethod.GET)
+  @ResponseBody
+  public void downloadHeader(HttpServletResponse response, @RequestParam Long medicineId) {
+    String filePath = FileUtils.getMedicineHeaderPath(medicineId);
+    // 生成的模板html模板头文件名样例：1023_header.html
+    String fileName = medicineId + XMLConstant.HTML_HEADER_SUFFIX;
+    // 调用下载服务
+    iFileService.download(response, filePath, fileName);
+  }
+
   /**
    * 提取html中的id信息
    *

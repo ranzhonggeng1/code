@@ -40,4 +40,9 @@ public interface IDataBatchService {
    */
   Map<String, Object> save(List<DataClassDTO> dataClassDTOList) throws Exception;
 
+  Long fkGetClassIdByRubbish(Long medicineId, String batchNo, Long firstClassId, Long secondClassId);
+
+  Long fkGetBatchIdByRubbish(Long medicineId, String batchNo);
+
+  Long fkGetClassIdByRubbish(Long batchId, Long firstClassId, Long secondClassId);
 }

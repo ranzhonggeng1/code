@@ -16,11 +16,14 @@ public class BatchRedoVO {
   @ApiModelProperty(value = "批次数据id", required = true, example = "")
   private Long batchId;
 
-  @ApiModelProperty(value = "复测原因", required = false, example = "测试复测")
+  @ApiModelProperty(value = "复测原因", required = true, example = "测试复测")
   private String reason;
 
-  @ApiModelProperty(value = "类型对象", required = true)
+  @ApiModelProperty(value = "类型对象", required = true, hidden = true)
   private List<Long> classIds;
+
+  @ApiModelProperty(value = "大小类对象", required = true)
+  private List<ClassIdVO> classIdVOS;
 
   public Long getBatchId() {
     return batchId;
@@ -44,5 +47,14 @@ public class BatchRedoVO {
 
   public void setClassIds(List<Long> classIds) {
     this.classIds = classIds;
+  }
+
+  public List<ClassIdVO> getClassIdVOS() {
+    return classIdVOS;
+  }
+
+  public void setClassIdVOS(
+      List<ClassIdVO> classIdVOS) {
+    this.classIdVOS = classIdVOS;
   }
 }

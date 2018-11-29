@@ -42,6 +42,13 @@ public interface IDataRecordService {
   Map<String, Object> save(List<DataRecordDTO> dataRecordDTOList) throws Exception;
 
   /**
+   * 保存记录备注
+   * @param dataRecordDTOList 记录对象
+   * @return 处理结果
+   */
+  Map<String, Object> saveRemark(List<DataRecordDTO> dataRecordDTOList) throws Exception;
+
+  /**
    * 根据状态获取记录数据
    *
    * @param status 状态

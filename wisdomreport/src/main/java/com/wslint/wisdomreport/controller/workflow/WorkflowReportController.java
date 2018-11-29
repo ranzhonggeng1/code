@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author yuxr
  * @since 2018/11/13 14:22
  */
-@Api(tags = "报告工作流接口", description = "提供报告工作流接口")
+@Api(tags = "3 工作流接口", description = "提供工作流流转接口")
 @RestController
 @RequestMapping(value = "/workflow/report")
 public class WorkflowReportController {

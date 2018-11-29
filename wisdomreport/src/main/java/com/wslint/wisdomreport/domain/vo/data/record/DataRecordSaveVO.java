@@ -1,6 +1,6 @@
 package com.wslint.wisdomreport.domain.vo.data.record;
 
-import com.wslint.wisdomreport.domain.vo.data.clazz.DataClassIdVO;
+import com.wslint.wisdomreport.domain.vo.data.clazz.DataClassVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 2018/11/16 10:57
  */
 @ApiModel(value = "保存记录数据对象")
-public class DataRecordSaveVO extends DataClassIdVO {
+public class DataRecordSaveVO extends DataClassVO {
 
   @ApiModelProperty(value = "空格id", required = true, example = "233")
   private Long orderId;

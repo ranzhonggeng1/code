@@ -46,6 +46,7 @@ public class DataReportServiceImpl implements IDataReportService {
    */
   @Override
   public Map<String, Object> save(List<DataReportDTO> dataReportDTOList) throws Exception {
+    LOGGER.info("报告数据保存 - {} 条！", dataReportDTOList.size());
     List<WorkflowReportTaskDTO> workflowReportTaskDTOList = new ArrayList<>();
     // 判断是否有重复保存的数据，已保存数据走工作流修改
     Map<Long, List<Long>> batchOrderIdsMap = new HashMap<>();
@@ -75,6 +76,27 @@ public class DataReportServiceImpl implements IDataReportService {
     LOGGER.error("报告数据新增失败！");
     throw new DataException("数据保存失败!");
   }
+
+  /**
+   * 保存报告备注
+   *
+   * @param dataReportDTOList 数据对象
+   * @return 处理结果
+   */
+  @Override
+  public Map<String, Object> saveRemark(List<DataReportDTO> dataReportDTOList) throws Exception {
+    dataReportDTOList.forEach(
+        data -> {
+          data.setRemarker(CommonUtils.getCurrentUserId());
+          data.setRemarkTime(CommonUtils.getNowTime());
+        });
+      if (!dataReportDao.updateRemarksByClassOrderIds(dataReportDTOList)) {
+        LOGGER.error("更新备注失败！");
+        throw new DataException("保存备注失败！");
+      }
+      LOGGER.info("更新备注成功！");
+      return ReturnUtils.successMap("更新备注成功！");
+    }
 
   /**
    * 获取批次对应的报告数据
