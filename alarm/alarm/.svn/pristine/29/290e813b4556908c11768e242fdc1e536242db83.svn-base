@@ -1,0 +1,14 @@
+package cn.wslint.alarm.provider;
+
+import cn.wslint.alarm.resources.AlarmResource;
+import java.text.ParseException;
+
+/**
+ * 定义从sql数据库中取得告警数据
+ *
+ * @author ranzhonggeng
+ */
+public interface ResourceProvider {
+
+  AlarmResource getReceiver() throws ParseException;
+}

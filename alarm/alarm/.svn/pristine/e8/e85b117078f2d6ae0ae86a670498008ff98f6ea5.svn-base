@@ -1,0 +1,60 @@
+package cn.wslint.alarm.server;
+
+import cn.wslint.alarm.dao.impl.AlarmReceiverDaoImpl;
+import cn.wslint.alarm.resources.AlarmResource;
+import cn.wslint.alarm.resources.Level;
+import cn.wslint.alarm.template.TemplateModel;
+import java.util.UUID;
+
+/**
+ * 提供socket层的接口访问 @Author: rzg @Date: 2018/11/26 20:38
+ */
+public class AlarmServer {
+
+  public void alarmOperation(AlarmResource alarmResource) {
+    AlarmReceiverDaoImpl alarmResourceDaoImpl = new AlarmReceiverDaoImpl();
+    AlarmResource alarmRes = new AlarmResource();
+    TemplateModel model = new TemplateModel();
+
+    // 设置日志ID，UUID方式生成
+    String alram_id = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+    // 解析,拼装
+    alarmRes.setId(alram_id);
+    alarmRes.setAlarmName(alarmResource.getAlarmName());
+    alarmRes.setComponentName(alarmResource.getComponentName());
+    alarmRes.setLevel(alarmResource.getLevel());
+    alarmRes.setHost(alarmResource.getHost());
+    alarmRes.setDateTime(alarmResource.getDateTime());
+    alarmRes.setContent(alarmResource.getContent());
+    alarmRes.setTraceStack(alarmResource.getTraceStack());
+    alarmRes.setException(alarmResource.getException());
+    alarmRes.setStatus(alarmResource.getStatus());
+
+    model.setAlarmName(alarmResource.getAlarmName());
+    model.setComponentName(alarmResource.getComponentName());
+    model.setHost(alarmResource.getHost());
+    model.setDateTime(alarmResource.getDateTime());
+    model.setContent(alarmResource.getContent());
+    model.setTraceStack(alarmResource.getTraceStack());
+    model.setContent(alarmResource.getException());
+
+    switch (alarmResource.getLevel()) {
+      case "debug":
+        model.setLevel(Level.DEBUG);
+        break;
+      case "info":
+        model.setLevel(Level.INFO);
+        break;
+      case "warn":
+        model.setLevel(Level.WARN);
+        break;
+      case "error":
+        model.setLevel(Level.ERROR);
+        break;
+    }
+    // 发送实体
+    alarmResourceDaoImpl.sendAlarm(model);
+    // 存储实体
+    alarmResourceDaoImpl.addAlarmResource(alarmRes);
+  }
+}

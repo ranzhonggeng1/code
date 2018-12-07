@@ -1,0 +1,101 @@
+package cn.wslint.log.optlogSocketServer;
+
+import cn.wslint.log.common.OptlogConstant;
+import cn.wslint.log.dao.impl.OptLogServiceImpl;
+import cn.wslint.log.resources.OptlogAddResource;
+import com.alibaba.fastjson.JSONObject;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+/**
+ * 多线程处理socket接收的数据 @Author: rzg @Date: 2018/11/26 16:54
+ */
+public class OptlogSocketOperate extends Thread {
+
+  private Socket socket;
+
+  public OptlogSocketOperate(Socket socket) {
+    this.socket = socket;
+  }
+
+  @SuppressWarnings("unused")
+  public void run() {
+    try {
+
+      // 根据输入输出流和客户端连接
+      InputStream inputStream = socket.getInputStream(); // 得到一个输入流，接收客户端传递的信息
+      InputStreamReader inputStreamReader = new InputStreamReader(inputStream); // 提高效率，将自己字节流转为字符流
+      BufferedReader bufferedReader = new BufferedReader(inputStreamReader); // 加入缓冲区
+      String temp = null;
+      String info = "";
+      while ((temp = bufferedReader.readLine()) != null) {
+        info += temp;
+        System.out.println("已接收到客户端连接");
+        System.out.println("服务端接收到客户端信息：" + info);
+
+        JSONObject optlogJson = JSONObject.parseObject(info);
+        OptlogAddResource optlogAddResource = new OptlogAddResource();
+        OptLogServiceImpl optLogServiceImpl = new OptLogServiceImpl();
+
+        // 设置日志ID，UUID方式生成
+        String optlog_id = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+        // 服务器ip
+        //        InetAddress netAddress = getInetAddress();
+        //        String optlog_ipAddress = getHostIp(netAddress);
+        // 还需要设备IP...从param中拿到
+
+        // 用户信息，id及name，从session中获取
+        /** session.getAttribute("key"); */
+
+        // 当前时间
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 设置日期格式
+        String currentDate = df.format(new Date());
+
+        // 解析
+        optlogAddResource.setId(optlog_id);
+        optlogAddResource.setName((String) optlogJson.get(OptlogConstant.OPTLOG_NAME));
+        optlogAddResource.setDeviceHost((String) optlogJson.get(OptlogConstant.OPTLOG_DEVICE_HOST));
+        optlogAddResource.setServiceHost(
+            (String) optlogJson.get(OptlogConstant.OPTLOG_SERVICE_HOST));
+        optlogAddResource.setType((String) optlogJson.get(OptlogConstant.OPTLOG_TYPE));
+        optlogAddResource.setUserName((String) optlogJson.get(OptlogConstant.OPTLOG_USER_NAME));
+        optlogAddResource.setUserId((String) optlogJson.get(OptlogConstant.OPTLOG_USER_ID));
+        optlogAddResource.setDateTime(currentDate);
+        optlogAddResource.setObjectId((String) optlogJson.get(OptlogConstant.OPTLOG_OBJECT_ID));
+        optlogAddResource.setObjectName((String) optlogJson.get(OptlogConstant.OPTLOG_OBJECT_NAME));
+        optlogAddResource.setResult((String) optlogJson.get(OptlogConstant.OPTLOG_RESULT));
+        optlogAddResource.setContent((String) optlogJson.get(OptlogConstant.OPTLOG_CONTENT));
+        System.out.println("已接收:" + optlogAddResource.toString());
+        optLogServiceImpl.handleOptlog(optlogAddResource);
+      }
+
+      OutputStream outputStream = socket.getOutputStream(); // 获取一个输出流，向服务端发送信息
+      PrintWriter printWriter = new PrintWriter(outputStream); // 将输出流包装成打印流
+      printWriter.print("你好，服务端已接收到您的信息");
+      printWriter.flush();
+      socket.shutdownOutput(); // 关闭输出流
+
+      // 关闭相对应的资源
+      printWriter.close();
+      outputStream.close();
+      bufferedReader.close();
+      inputStream.close();
+      socket.close();
+
+    } catch (IOException ex) {
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+
+    }
+  }
+}

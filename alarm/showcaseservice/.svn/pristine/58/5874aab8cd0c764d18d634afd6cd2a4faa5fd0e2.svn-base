@@ -1,0 +1,74 @@
+package com.wslint.wisdomreport;
+
+import com.wslint.wisdomreport.MsgDefine.ServiceDefine;
+import com.wslint.wisdomreport.resource.AlarmInfo;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * @Author: rzg
+ * @Date: 2018/12/5 14:28
+ */
+public class AlarmTaskCase extends TaskBase {
+
+  public AlarmTaskCase(ServiceDefine serviceID) {
+    super(serviceID);
+  }
+
+  @Override
+  protected void handleEvents(MsgDefine msgDefine) {
+
+  }
+
+  @Override
+  public int loadService() {
+    return 0;
+  }
+
+  @Override
+  public int unloadService() {
+    return 0;
+  }
+
+  @Override
+  public int startService() {
+    return 0;
+  }
+
+  @Override
+  public int stopService() {
+    return 0;
+  }
+
+  /**
+   * 模块告警信息发送入口
+   * @param alarmInfo 告警实体
+   */
+  public void sendAlarm(AlarmInfo alarmInfo) {
+    sendAlarmMsg(alarmInfo);
+  }
+
+  /**
+   * test
+   * @param args 入口
+   */
+  public static void main(String args[]) {
+    AlarmTaskCase alarmTaskCase = new AlarmTaskCase(MsgDefine.ServiceDefine.SHOWCASE_SERVICE);
+
+    //数据测试
+    AlarmInfo alarmInfo = new AlarmInfo();
+    alarmInfo.setAlarmName("test alarm");
+    alarmInfo.setHost("192.1.1.1");
+    alarmInfo.setComponentName("app");
+    alarmInfo.setContent("losting");
+    SimpleDateFormat formate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String date = formate.format(new Date());
+    System.out.println(date);
+    alarmInfo.setDateTime(date);
+    alarmInfo.setException("stop");
+    alarmInfo.setLevel("error");
+    alarmInfo.setStatus("0");
+    alarmInfo.setTraceStack("trace");
+    alarmTaskCase.sendAlarm(alarmInfo);
+  }
+}

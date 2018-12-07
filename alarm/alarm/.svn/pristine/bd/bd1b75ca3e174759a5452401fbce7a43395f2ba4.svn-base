@@ -1,0 +1,134 @@
+package cn.wslint.alarm.alarmClient;
+
+import cn.wslint.alarm.resources.AlarmResource;
+import java.io.IOException;
+import java.net.Socket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 实现tcp抽象类 @Author: rzg @Date: 2018/11/27 10:55
+ */
+public class ClientRealize extends TcpClient implements Runnable {
+
+  private static final Logger logger = LoggerFactory.getLogger(ClientRealize.class);
+
+  private String IP;
+  private int port;
+  boolean connect = false;
+  private SocketTransceiver transceiver;
+  private Socket socket;
+  private String alarmResourceStr;
+
+  @Override
+  public void sendAlarm(AlarmResource alarmResource) {
+    this.alarmResourceStr = alarmResource.toString();
+    new Thread(this).start();
+  }
+
+  @Override
+  public void connect(String IP, int port) {
+    this.IP = IP;
+    this.port = port;
+    new Thread(this).start();
+  }
+
+  public static void main(String[] args) throws IOException {
+    Socket socket = new Socket("localhost", 8099);
+  }
+
+  @Override
+  public void run() {
+    try {
+      transceiver =
+          new SocketTransceiver() {
+            @Override
+            public void onReceive(String s) {
+              this.onReceive(s);
+            }
+
+            @Override
+            public void onConnectBreak() {
+              this.onConnectBreak();
+            }
+
+            @Override
+            public void onSendSuccess(String s) {
+              this.onSendSuccess(s);
+            }
+          };
+      System.out.println("alarmSocketServer begin");
+      socket = new Socket("localhost", 8099);
+      System.out.println("alarmSocketServer end");
+      connect = true;
+
+      try {
+        socket.sendUrgentData(0xFF); // 发送心跳包
+      } catch (Exception ex) {
+        this.onConnectFalied();
+        logger.info("alarm", ex.getMessage().toString());
+      }
+
+      this.onConnectSuccess();
+      // 启动客户端socket的输出流,发送告警
+      transceiver.start(socket, alarmResourceStr);
+      System.out.println("send success");
+    } catch (IOException e) {
+      this.onConnectFalied();
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public void setAlarmResource(String alarmResourceStr) {
+    this.alarmResourceStr = alarmResourceStr;
+  }
+
+  @Override
+  public boolean isConnected() {
+    return connect;
+  }
+
+  @Override
+  public void disConnected() {
+    connect = false;
+    if (transceiver != null) {
+      transceiver.stop();
+      transceiver = null;
+    }
+  }
+
+  public SocketTransceiver getTransceiver() {
+    return transceiver;
+  }
+
+  @Override
+  public void onConnectSuccess() {
+    //    logger.info("连接成功");
+    System.out.println("连接成功");
+  }
+
+  @Override
+  public void onConnectBreak() {
+    //    logger.info("断开连接");
+    System.out.println("断开连接");
+  }
+
+  @Override
+  public void onReceive(String s) {
+    //    logger.info("接收消息");
+    System.out.println("接收消息");
+  }
+
+  @Override
+  public void onConnectFalied() {
+    //    logger.info("连接失败");
+    System.out.println("连接失败");
+  }
+
+  @Override
+  public void onSendSuccess(String s) {
+    //    logger.info("发送成功");
+    System.out.println("发送成功");
+  }
+}

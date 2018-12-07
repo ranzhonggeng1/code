@@ -1,0 +1,32 @@
+package cn.wslint.log.optlogSocketServer;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+/**
+ * 将socket service随tomcat启动 @Author: rzg @Date: 2018/11/26 16:50
+ */
+public class OptlogSocketServiceLoader implements ServletContextListener {
+
+  // alarmSocketServer server 线程
+  private OptlogSocketThread optlogSocketThread;
+
+  @Override
+  public void contextDestroyed(ServletContextEvent arg0) {
+    if (null != optlogSocketThread && !optlogSocketThread.isInterrupted()) {
+      optlogSocketThread.closeSocketServer();
+      optlogSocketThread.interrupt();
+    }
+  }
+
+  @Override
+  public void contextInitialized(ServletContextEvent arg0) {
+    // TODO Auto-generated method stub
+    if (null == optlogSocketThread) {
+      // 新建线程类
+      optlogSocketThread = new OptlogSocketThread(null);
+      // 启动线程
+      optlogSocketThread.start();
+    }
+  }
+}

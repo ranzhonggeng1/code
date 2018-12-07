@@ -1,0 +1,78 @@
+'''
+消息定义文件
+作者：吴昌议
+日期：20181204
+说明：必须保证本文件定义内容和java版本的消息头文件保持一致
+'''
+
+# -*- coding: utf-8 -*-
+from enum import Enum
+
+class MsgDefine:
+    def __init__(self):
+        #定义消息结构
+        self.srcServiceID = MsgDefine.ServiceDefine.UNKNOWN_SERVICE
+        self.dstServiceID = MsgDefine.ServiceDefine.UNKNOWN_SERVICE
+        self.cmd          = MsgDefine.CMD.UNKNOWN_CMD
+        self.priority     = MsgDefine.Priority.MIDDLE
+        self.msgLen       = 0
+        self.content      = None
+
+    '''
+    定义消息定长字段大小，便于网络收发时明确缓冲区大小
+    '''
+    class FieldObjSize(Enum):
+        srcServiceIDObjSize = 4
+        dstServiceIDObjSize = 4
+        cmdObjSize          = 4
+        priorityObjSize     = 4
+        msgLenObjSize       = 4
+
+
+    '''
+    定义服务ID
+    '''
+    class ServiceDefine(Enum):
+        MSG_SERVICE             = 0     # 消息中心
+        CHECK_RECORD_DB_SERVICE = 1     # 检验记录数据保存到数据库服务
+        BACKUP_SERVICE          = 2     # 备份服务
+        ALARM_SERVICE           = 3     # 告警服务
+        LOG_SERVICE             = 4     # 日志服务
+        SHOWCASE_SERVICE        = 99    # 示例服务
+        UNKNOWN_SERVICE         = -1    # 未知模块
+
+
+    '''
+    定义命令字
+    '''
+    class CMD(Enum):
+        REGISTER                = 0      # 注册服务
+        HAND_SHAKE              = 1      # 握手命令
+        LOAD_SERVICE            = 2      # 服务加载
+        START_SERVICE           = 3      # 服务启动
+        STOP_SERVICE            = 4      # 服务停止
+        UNLOAD_SERVICE          = 5      # 服务卸载
+        REPORT_LOG              = 6      # 记录日志
+        REPORT_ALARM            = 7      # 上报告警
+        BACKUP_FILE             = 8      # 备份文件
+
+        REGISTER_ANSWER         = 1000   # 注册服务
+        HAND_SHAKE_ANSWER       = 1001   # 握手命令
+        LOAD_SERVICE_ANSWER     = 1002   # 服务加载
+        START_SERVICE_ANSWER    = 1003   # 服务启动
+        STOP_SERVICE_ANSWER     = 1004   # 服务停止
+        UNLOAD_SERVICE_ANSWER   = 1005   # 服务卸载
+        REPORT_LOG_ANSWER       = 1006   # 记录日志
+        REPORT_ALARM_ANSWER     = 1007   # 上报告警
+        BACKUP_FILE_ANSWER      = 1008   # 备份文件
+
+        UNKNOWN_CMD             = -1     # 未知命令
+
+    '''
+    定义消息体优先级
+    '''
+    class Priority(Enum):
+        HEIGHT                  = 0      # 高优先级消息
+        MIDDLE                  = 1      # 中优先级消息，默认均应为中
+        LOW                     = 2      # 低优先级消息
+        UNKNOWN_PRIORITY        = -1     # 未知优先级

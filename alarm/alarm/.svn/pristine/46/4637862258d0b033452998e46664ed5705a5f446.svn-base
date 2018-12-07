@@ -1,0 +1,88 @@
+package cn.wslint.alarm.alarmSocketServer;
+
+import cn.wslint.alarm.common.Constant;
+import cn.wslint.alarm.resources.AlarmResource;
+import cn.wslint.alarm.server.AlarmServer;
+import com.alibaba.fastjson.JSONObject;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * 多线程处理socket接收的数据 @Author: rzg @Date: 2018/11/26 16:54
+ */
+public class SocketOperate extends Thread {
+
+  private Socket socket;
+
+  public SocketOperate(Socket socket) {
+    this.socket = socket;
+  }
+
+  @SuppressWarnings("unused")
+  public void run() {
+    try {
+
+      // 根据输入输出流和客户端连接
+      InputStream inputStream = socket.getInputStream(); // 得到一个输入流，接收客户端传递的信息
+      InputStreamReader inputStreamReader = new InputStreamReader(inputStream); // 提高效率，将自己字节流转为字符流
+      BufferedReader bufferedReader = new BufferedReader(inputStreamReader); // 加入缓冲区
+      String temp = null;
+      String info = "";
+      while ((temp = bufferedReader.readLine()) != null) {
+        info += temp;
+        System.out.println("已接收到客户端连接");
+        System.out.println("服务端接收到客户端信息：" + info);
+
+        JSONObject alarmJson = JSONObject.parseObject(info);
+        AlarmResource alarmResource = new AlarmResource();
+        alarmResource.setId((String) alarmJson.get(Constant.FIELD_ALARM_ID));
+        alarmResource.setAlarmName((String) alarmJson.get(Constant.FIELD_ALARM_NAME));
+        alarmResource.setComponentName((String) alarmJson.get(Constant.FIELD_ALARM_COMPONENT_NAME));
+        System.out.println((String) alarmJson.get(Constant.FIELD_ALARM_COMPONENT_NAME));
+        alarmResource.setLevel((String) alarmJson.get(Constant.FIELD_ALARM_LEVEL));
+        alarmResource.setHost((String) alarmJson.get(Constant.FIELD_ALARM_HOST));
+
+        // 时间处理，String =>util.date=>sql.date
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date time = simpleDateFormat.parse((String) alarmJson.get(Constant.FIELD_ALARM_DATE_TIME));
+        java.sql.Date date_sql = new java.sql.Date(time.getTime());
+
+        alarmResource.setDateTime(date_sql);
+        alarmResource.setContent((String) alarmJson.get(Constant.FIELD_ALARM_CONTENT));
+        alarmResource.setTraceStack((String) alarmJson.get(Constant.FIELD_ALARM_TRACE_STACK));
+        alarmResource.setException((String) alarmJson.get(Constant.FIELD_ALARM_EXCEPTION));
+        alarmResource.setStatus((String) alarmJson.get(Constant.FIELD_ALARM_STATUS));
+
+        AlarmServer alarmServer = new AlarmServer();
+        alarmServer.alarmOperation(alarmResource);
+      }
+
+      OutputStream outputStream = socket.getOutputStream(); // 获取一个输出流，向服务端发送信息
+      PrintWriter printWriter = new PrintWriter(outputStream); // 将输出流包装成打印流
+      printWriter.print("你好，服务端已接收到您的信息");
+      printWriter.flush();
+      socket.shutdownOutput(); // 关闭输出流
+
+      // 关闭相对应的资源
+      printWriter.close();
+      outputStream.close();
+      bufferedReader.close();
+      inputStream.close();
+      socket.close();
+
+    } catch (IOException ex) {
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+
+    }
+  }
+}

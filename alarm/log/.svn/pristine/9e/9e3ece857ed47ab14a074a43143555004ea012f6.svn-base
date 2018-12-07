@@ -1,0 +1,31 @@
+package cn.wslint.log;
+
+import cn.wslint.log.optlogClient.OptlogClientSocket;
+import cn.wslint.log.resources.OptlogAddResource;
+
+/**
+ * Socket客户端 @Author: rzg @Date: 2018/11/26 17:19
+ */
+public class Client {
+
+  public static void main(String[] args) {
+    // 测试日志
+    final OptlogClientSocket optlogClientSocket = new OptlogClientSocket("127.0.0.1", 8098);
+    try {
+      OptlogAddResource optlogAddResource = new OptlogAddResource();
+      optlogAddResource.setName("操作日志测试");
+      optlogAddResource.setDeviceHost("192.168.1.1");
+      optlogAddResource.setServiceHost("127.0.0.1");
+      optlogAddResource.setContent("测试");
+      optlogAddResource.setObjectId("1232321");
+      optlogAddResource.setObjectName("但是当时的");
+      optlogAddResource.setUserId("fr411");
+      optlogAddResource.setUserName("admin");
+      optlogAddResource.setResult("success");
+      optlogAddResource.setType("add");
+      optlogClientSocket.addLog(optlogAddResource);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}

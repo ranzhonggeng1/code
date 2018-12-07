@@ -1,0 +1,131 @@
+package cn.wslint.alarm.alarmClient;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 用于接收和发送数据，和服务端进行交互 @Author: rzg @Date: 2018/11/26 21:08
+ */
+public abstract class SocketTransceiver implements Runnable {
+
+  private static final Logger logger = LoggerFactory.getLogger(SocketTransceiver.class);
+
+  private Socket socket;
+  private InputStream inputStream;
+  private OutputStream outputStream;
+  private boolean runFlag = false;
+  private BufferedReader br;
+  private PrintWriter pw;
+  private String alarmResourceStr;
+
+  public void start(Socket socket, String alarmResourceStr) {
+    this.socket = socket;
+    this.alarmResourceStr = alarmResourceStr;
+    runFlag = true;
+    System.out.println("SocketTransceiver start ");
+    new Thread(this).start();
+  }
+
+  public void stop() {
+    runFlag = false;
+
+    if (inputStream != null) {
+      try {
+        inputStream.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    if (outputStream != null) {
+      try {
+        outputStream.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    if (br != null) {
+      try {
+        br.close();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+
+    if (socket != null) {
+      try {
+        socket.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
+  @Override
+  public void run() {
+    try {
+      System.out.println("SocketTransceiver run ");
+      inputStream = socket.getInputStream();
+      outputStream = socket.getOutputStream();
+      this.sendMSG(alarmResourceStr);
+    } catch (IOException e) {
+      runFlag = false;
+      e.printStackTrace();
+    }
+
+    // 客户端接收消息暂时屏蔽，线程栈溢出？处理runFlag
+    /*while (runFlag) {
+          this.sendMSG(alarmResourceStr);
+          br = new BufferedReader(new InputStreamReader(inputStream));
+          String content = null;
+          System.out.println("SocketTransceiver br " + br);
+          try {
+            while ((content = br.readLine()) != null) {
+              // 每当读到来自服务器的数据之后，发送消息通知程序界面显示该数据
+    //          this.onReceive(content);
+              System.out.println("cotent:" + content);
+            }
+          } catch (IOException e) {
+            System.out.println("cotent error!" + e);
+            e.printStackTrace();
+          }
+        }*/
+
+  }
+
+  public void sendMSG(String s) {
+    System.out.println("SocketTransceiver sendMSG --- " + s);
+    if (outputStream != null) {
+      try {
+        pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream)));
+        System.out.println("sendMSG --- " + s);
+        pw.println(s); // 发起报警参数
+        pw.flush();
+      } catch (Exception e) {
+        onConnectBreak();
+        runFlag = false;
+        e.printStackTrace();
+      } finally {
+        if (pw != null) {
+          pw.close();
+        }
+      }
+    }
+  }
+
+  public abstract void onReceive(String s);
+
+  public abstract void onConnectBreak();
+
+  public abstract void onSendSuccess(String s);
+}

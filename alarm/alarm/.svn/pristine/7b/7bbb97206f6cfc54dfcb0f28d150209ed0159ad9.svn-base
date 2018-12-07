@@ -1,0 +1,39 @@
+package cn.wslint.alarm;
+
+import cn.wslint.alarm.alarmClient.AlarmClientSocket;
+import cn.wslint.alarm.resources.AlarmResource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * Socket客户端 @Author: rzg @Date: 2018/11/26 17:19
+ */
+public class Client {
+
+  public static void main(String[] args) {
+    // 测试告警
+    final AlarmClientSocket alarmClientSocket = new AlarmClientSocket("127.0.0.1", 8099);
+    try {
+      AlarmResource alarmResource = new AlarmResource();
+      alarmResource.setAlarmName("测试告警");
+      alarmResource.setHost("192.1.1.1");
+      alarmResource.setComponentName("app组件");
+      alarmResource.setContent("节点失联");
+      // 当前时间Date类型,util转sql
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      Date time = sdf.parse(sdf.format(new Date()));
+      java.sql.Date date_sql = new java.sql.Date(time.getTime());
+
+      alarmResource.setDateTime(date_sql);
+      alarmResource.setException("节点故障机器停机");
+      alarmResource.setLevel("error");
+      alarmResource.setStatus("0");
+      alarmResource.setTraceStack("trace");
+      System.out.println(" begin");
+
+      alarmClientSocket.alarmMsg(alarmResource);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}

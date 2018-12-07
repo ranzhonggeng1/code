@@ -1,0 +1,102 @@
+'''
+任务框架样例
+作者：吴昌议
+日期：20181204
+说明：
+1.业务模块从TaskBase继承，获得消息发送、消息自动驱动消息处理函数的能力
+2.业务模块需要实现微服务接口: 实
+  (1) 在eventToFunc中登记消息与消息处理函数的关系
+  (2) 实现消息处理函数
+'''
+# -*- coding: utf-8 -*-
+import threading
+from time import sleep
+
+from msgDefine import MsgDefine
+from taskBase import TaskBase
+
+
+class ShowCaseService(TaskBase):
+    def __init__(self):
+        super(ShowCaseService, self).__init__(MsgDefine.ServiceDefine.SHOWCASE_SERVICE)
+
+    '''
+    定义消息和消息的处理函数
+    '''
+    def eventToFunc(self, cmdID):
+        eventFuncs = {
+            MsgDefine.CMD.BACKUP_FILE           : self.doBackup,
+            MsgDefine.CMD.STOP_SERVICE_ANSWER   : self.stopService
+        }
+        return eventFuncs.get(cmdID, None)
+
+    '''
+    消息处理事件
+    '''
+    def handleEvents(self, msg):
+        eventFunc = self.eventToFunc(msg.cmd)
+        if None != eventFunc:
+            eventFunc(msg)
+        else:
+            print("handle error message, srcServiceID:{} cmd:{}, content:{}". \
+                  format(msg.srcServiceID, msg.cmd, msg.content))
+
+    '''
+    定时器事件
+    '''
+    def OnTimer(self):
+        pass
+
+    '''
+    加载服务
+    '''
+    def loadService(self):
+        pass
+
+    '''
+    卸载服务
+    '''
+    def unloadService(self):
+        pass
+
+    '''
+    启动服务
+    '''
+    def startService(self):
+        pass
+
+    '''
+    停止服务
+    '''
+    def stopService(self):
+        pass
+
+    '''
+    消息处理函数
+    '''
+    def doBackup(self, msg):
+        print(msg.cmd)
+        xxMsg = MsgDefine
+        self.SendMsg(xxMsg)
+
+    '''
+    业务函数
+    '''
+    def xxFunc(self):
+        while True:
+            sleep(1)
+            xxMsg = MsgDefine
+            self.SendMsg(xxMsg)
+
+
+
+if __name__ == "__main__":
+    scs = ShowCaseService
+    # 将taskbase的消息处理放到线程中
+    readThread = threading.Thread(target=scs.run())
+    readThread.setDaemon(True)
+    readThread.start()
+    # 执行业务任意其他函数
+    scs.xxFunc()
+
+

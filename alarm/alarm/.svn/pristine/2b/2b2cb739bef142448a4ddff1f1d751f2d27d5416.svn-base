@@ -1,0 +1,29 @@
+package cn.wslint.alarm.alarmClient;
+
+import cn.wslint.alarm.resources.AlarmResource;
+
+/**
+ * 用于和服务端连接 @Author: rzg @Date: 2018/11/26 21:07
+ */
+public abstract class TcpClient {
+
+  public abstract void sendAlarm(AlarmResource alarmResource);
+
+  public abstract void connect(String IP, int port);
+
+  public abstract void setAlarmResource(String alarmResourceStr);
+
+  public abstract boolean isConnected();
+
+  public abstract void disConnected();
+
+  public abstract void onConnectSuccess();
+
+  public abstract void onConnectBreak();
+
+  public abstract void onReceive(String s);
+
+  public abstract void onConnectFalied();
+
+  public abstract void onSendSuccess(String s);
+}

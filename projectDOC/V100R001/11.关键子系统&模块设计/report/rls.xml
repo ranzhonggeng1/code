@@ -1,4 +1,0 @@
-<relations >
-    <relationShip Id="rId1" Target="checkActionProperty.xml"></relationShip>
-    <relationShip Id="rId2" Target="checkActionProperty.xml"></relationShip>
-</relations>

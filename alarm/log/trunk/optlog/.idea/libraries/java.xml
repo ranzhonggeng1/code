@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES>
+      <root url="jar://E:/server/TaskBase/out/production/taskbase.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../alarm/trunk/alarm/src/main/webapp/WEB-INF/lib/javax.servlet-api-3.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/src/main/java" />
+    </SOURCES>
+  </library>
+</component>

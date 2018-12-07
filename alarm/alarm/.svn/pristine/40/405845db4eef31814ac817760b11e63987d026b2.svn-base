@@ -1,0 +1,238 @@
+package cn.wslint.alarm.dao.impl;
+
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONException;
+import cn.hutool.json.JSONObject;
+import cn.wslint.alarm.Alarm;
+import cn.wslint.alarm.DB.DBconn;
+import cn.wslint.alarm.common.Constant;
+import cn.wslint.alarm.dao.AlarmReceiverDao;
+import cn.wslint.alarm.resources.AlarmResource;
+import cn.wslint.alarm.resources.AlarmSearchResource;
+import cn.wslint.alarm.template.TemplateModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * 告警对外接口实现 1、获取email、wechat联系人 2、发送告警至email、wechat 3、获取数据库连接 4、保存告警信息到数据库alarm_resource，调用
+ *
+ * @author ranzhonggeng
+ * <p>2018年11月9日
+ */
+public class AlarmReceiverDaoImpl implements AlarmReceiverDao {
+
+  private static final Logger logger = LoggerFactory.getLogger(AlarmReceiverDaoImpl.class);
+  private PreparedStatement ptmt = null;
+  private ResultSet rs = null;
+
+  @Override
+  // 4、捕获告警时，添加数据库
+  public boolean addAlarmResource(AlarmResource alarm) {
+    // TODO Auto-generated method stub
+    boolean flag = false;
+    DBconn.init();
+    int i =
+        DBconn.addUpdDel(
+            "insert into alarm_resource(id,alarm_name,component_name,level,host,date_time,content,trace_stack,exception,status) "
+                + "values('"
+                + alarm.getId()
+                + "','"
+                + alarm.getAlarmName()
+                + "','"
+                + alarm.getComponentName()
+                + "','"
+                + alarm.getLevel()
+                + "','"
+                + alarm.getHost()
+                + "','"
+                + alarm.getDateTime()
+                + "','"
+                + alarm.getContent()
+                + "','"
+                + alarm.getTraceStack()
+                + "','"
+                + alarm.getException()
+                + "','"
+                + alarm.getStatus()
+                + "')");
+    if (i > 0) {
+      flag = true;
+    }
+    System.out.println("addAlarmResource success!");
+    DBconn.closeConn();
+    return flag;
+  }
+
+  @Override
+  // 4、查询告警信息
+  // 根据条件查询AlarmResource alarm
+  public List<AlarmResource> getAlarmResource() throws JSONException, SQLException, ParseException {
+    // TODO Auto-generated method stub
+    List<AlarmResource> list = new ArrayList<AlarmResource>();
+    DBconn.init();
+    ResultSet rs = DBconn.selectSql("select * from alarm_resource");
+    // 添加告警的bean
+    while (rs.next()) {
+      AlarmResource alarmResource = new AlarmResource();
+      alarmResource.setId(rs.getString(Constant.FIELD_ALARM_ID));
+      alarmResource.setAlarmName(rs.getString(Constant.FIELD_ALARM_NAME));
+      alarmResource.setHost(rs.getString(Constant.FIELD_ALARM_HOST));
+      alarmResource.setComponentName(rs.getString(Constant.FIELD_ALARM_COMPONENT_NAME));
+      alarmResource.setLevel(rs.getString(Constant.FIELD_ALARM_LEVEL));
+
+      // 时间处理
+      String date = rs.getString(Constant.FIELD_ALARM_DATE_TIME);
+      SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+      Date dateStr = formatter.parse(date);
+      java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+      alarmResource.setDateTime(dateDB);
+
+      alarmResource.setContent(rs.getString(Constant.FIELD_ALARM_CONTENT));
+      alarmResource.setTraceStack(rs.getString(Constant.FIELD_ALARM_TRACE_STACK));
+      alarmResource.setException(rs.getString(Constant.FIELD_ALARM_EXCEPTION));
+      alarmResource.setStatus(rs.getString(Constant.FIELD_ALARM_STATUS));
+
+      list.add(alarmResource);
+    }
+
+    DBconn.closeConn();
+    return list;
+  }
+
+  @Override
+  /** 条件查询，并且实现查询未解决的告警 */
+  // 根据条件查询AlarmResource alarm
+  public List<AlarmResource> getAlarmSearch(AlarmSearchResource alarmSearch)
+      throws JSONException, SQLException, ParseException {
+    // TODO Auto-generated method stub
+    List<AlarmResource> list = new ArrayList<AlarmResource>();
+    DBconn.init();
+
+    String sql = "select * from alarm_resource";
+    String searchInfo = "";
+    if (alarmSearch.getStatus() != null && alarmSearch.getStatus().length() != 0) {
+      searchInfo += " status = '" + alarmSearch.getStatus() + "'";
+    } else {
+      if (alarmSearch.getAlarmName() != null && alarmSearch.getAlarmName().length() != 0) {
+        searchInfo += " alarm_name like '%" + alarmSearch.getAlarmName() + "%'";
+      }
+      if (alarmSearch.getBeginTime() != null
+          && alarmSearch.getBeginTime().length() != 0
+          && alarmSearch.getEndTime() != null
+          && alarmSearch.getEndTime().length() != 0) {
+        searchInfo +=
+            " date_time between '"
+                + alarmSearch.getBeginTime()
+                + "' and '"
+                + alarmSearch.getEndTime()
+                + "'";
+      }
+    }
+
+    if (searchInfo.length() != 0) {
+      sql += " where" + searchInfo;
+    }
+    logger.debug(sql);
+    System.out.println(sql);
+
+    ResultSet rs = DBconn.selectSql(sql);
+    // 添加告警的bean
+    while (rs.next()) {
+      AlarmResource alarmResource = new AlarmResource();
+      alarmResource.setId(rs.getString(Constant.FIELD_ALARM_ID));
+      alarmResource.setAlarmName(rs.getString(Constant.FIELD_ALARM_NAME));
+      alarmResource.setHost(rs.getString(Constant.FIELD_ALARM_HOST));
+      alarmResource.setComponentName(rs.getString(Constant.FIELD_ALARM_COMPONENT_NAME));
+      alarmResource.setLevel(rs.getString(Constant.FIELD_ALARM_LEVEL));
+
+      // 时间处理
+      String date = rs.getString(Constant.FIELD_ALARM_DATE_TIME);
+      SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
+      Date dateStr = formatter.parse(date);
+      java.sql.Date dateDB = new java.sql.Date(dateStr.getTime());
+      alarmResource.setDateTime(dateDB);
+
+      alarmResource.setContent(rs.getString(Constant.FIELD_ALARM_CONTENT));
+      alarmResource.setTraceStack(rs.getString(Constant.FIELD_ALARM_TRACE_STACK));
+      alarmResource.setException(rs.getString(Constant.FIELD_ALARM_EXCEPTION));
+      alarmResource.setStatus(rs.getString(Constant.FIELD_ALARM_STATUS));
+
+      list.add(alarmResource);
+    }
+
+    DBconn.closeConn();
+    return list;
+  }
+
+  @Override
+  /** 告警恢复，根据component_name、host和trace_stack判定相同的未解决告警信息是否已经存在，存在则更新状态为已解决 */
+  // 根据条件查询AlarmResource alarm
+  public boolean clearAlarm(AlarmResource alarm) {
+    // TODO Auto-generated method stub
+    boolean flag = false;
+    List<AlarmResource> list = new ArrayList<AlarmResource>();
+    DBconn.init();
+    String sql =
+        "update alarm_resource set status = 1 "
+            + "where component_name = '"
+            + alarm.getComponentName()
+            + "' and host = '"
+            + alarm.getHost()
+            + "' and trace_stack = '"
+            + alarm.getTraceStack()
+            + "'";
+    int i = DBconn.addUpdDel(sql);
+    if (i > 0) {
+      flag = true;
+    }
+    DBconn.closeConn();
+    return flag;
+  }
+
+  /**
+   * 查询结果ResultSet的每一条数据转换成一个json对象，数据中的每一列的列名和值组成键值对，放在对象中，最后把对象组织成一个json数组。
+   */
+  private String resultSetToJson(ResultSet rs) throws SQLException, JSONException {
+    // json数组
+    JSONArray array = new JSONArray();
+
+    // 获取列数
+    ResultSetMetaData metaData = rs.getMetaData();
+    int columnCount = metaData.getColumnCount();
+
+    // 遍历ResultSet中的每条数据
+    while (rs.next()) {
+      JSONObject jsonObj = new JSONObject();
+
+      // 遍历每一列
+      for (int i = 1; i <= columnCount; i++) {
+        String columnName = metaData.getColumnLabel(i);
+        String value = rs.getString(columnName);
+        System.out.println(columnName + "columnName: ***" + value);
+        jsonObj.put(columnName, value);
+      }
+      array.put(jsonObj);
+    }
+
+    return array.toString();
+  }
+
+  // 实现告警发送
+  @Override
+  public void sendAlarm(TemplateModel model) {
+    System.out.println("begin sendAlarm!");
+    //		logger.debug("begin sendAlarm");
+    Alarm.send(model);
+    System.out.println("end sendAlarm and success!");
+    //		logger.debug("end sendAlarm and success!");
+  }
+}

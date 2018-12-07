@@ -1,0 +1,82 @@
+package com.wslint.wisdomreport.queue;
+
+import com.wslint.wisdomreport.MsgDefine;
+
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReferenceArray;
+
+/**
+ * 用数组实现免锁有界队列
+ */
+public class LockFreeQueue {
+
+    private AtomicReferenceArray atomicReferenceArray;
+    //EMPTY代表为空，没有元素
+    private static final  Integer EMPTY = null;
+    //头指针,尾指针
+    AtomicInteger head,tail;
+
+    public LockFreeQueue(int size){
+        atomicReferenceArray = new AtomicReferenceArray(new Integer[size + 1]);
+        head = new AtomicInteger(0);
+        tail = new AtomicInteger(0);
+    }
+
+    /**
+     * 入队
+     * @param element
+     * @return
+     */
+    public boolean enqueue(MsgDefine element){
+        int index = (tail.get() + 1) % atomicReferenceArray.length();
+        if( index == head.get() % atomicReferenceArray.length()){
+            System.out.println("当前队列已满,"+ element+"无法入队!");
+            return false;
+        }
+        while(!atomicReferenceArray.compareAndSet(index,EMPTY,element)){
+            return enqueue(element);
+        }
+        tail.incrementAndGet(); //移动尾指针
+        //System.out.println("入队成功!" + element);
+        return true;
+    }
+
+    /**
+     * 出队
+     * @return
+     */
+    public MsgDefine dequeuc(){
+        if(head.get() == tail.get()){
+            //System.out.println("当前队列为空");
+            return null;
+        }
+        int index = (head.get() + 1) % atomicReferenceArray.length();
+        MsgDefine ele = (MsgDefine) atomicReferenceArray.get(index);
+        if(ele == null){ //有可能其它线程也在出队
+            return dequeuc();
+        }
+        while(!atomicReferenceArray.compareAndSet(index,ele,EMPTY)){
+            return dequeuc();
+        }
+        head.incrementAndGet();
+        //System.out.println("出队成功!" + ele);
+        return ele;
+    }
+
+    /**
+     * 调试信息，打印队列
+     */
+    public void printQueue(){
+        StringBuffer buffer = new StringBuffer("[");
+        for(int i = 0; i < atomicReferenceArray.length() ; i++){
+            if(i == head.get() || atomicReferenceArray.get(i) == null){
+                continue;
+            }
+            buffer.append(atomicReferenceArray.get(i) + ",");
+        }
+        buffer.deleteCharAt(buffer.length() - 1);
+        buffer.append("]");
+        System.out.println("队列内容:"    +buffer.toString());
+    }
+
+}
